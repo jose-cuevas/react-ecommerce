@@ -1,14 +1,15 @@
-import './App.css';
-import Products from './components/Products/Products';
-// import Article from './components/Article';
+import "./App.css";
+import Products from "./components/Products/Products";
+import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
 
-
-function App(props) {
-
+function App() {
   return (
-      // <Article {...props}/>
+    // <Article {...props}/>
     <>
-      <Products  />
+      <main className="app-container__flex">
+        <Products />
+        <ShoppingCart />
+      </main>
     </>
   );
 }
