@@ -7,12 +7,12 @@ import "./products.css";
 // import 'bootstrap/dist/css/bootstrap.css';
 // import '../ProductCard/productCard.css'
 
-function Products({ products, count, setCount, cart, setCart }) {
+function Products({ products, onAdd }) {
   // const counterAdd = () => {
   //   return setCount(count + 1);    
   // };
 
- console.log(cart)
+//  console.log(cart)
  
   return (
     <>
@@ -22,7 +22,7 @@ function Products({ products, count, setCount, cart, setCart }) {
         <section className="products-container__grid">
           {products.map((product) => (
             
-            <ProductCard key={product.id} product={product} cart={cart} setCart={setCart} count={count} setCount={setCount} />            
+            <ProductCard key={product.id} product={product} onAdd={onAdd} />            
           ))}
         </section>
       </section>

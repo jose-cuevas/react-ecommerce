@@ -1,24 +1,33 @@
-import CounterApp from "../CounterApp/CounterApp";
+// import CounterApp from "../CounterApp/CounterApp.jsx";
 
-function ShoppingCard({ itemBuyed, cart, setCart, count, setCount }) {
-//   const counterAdd = () => {
-//     return setCount(count + 1);
-//   };
+import "./ShoppingCard.css"
+function ShoppingCard({ item, cartItems, onAdd, onRemove, onReset}) {
+// const counterAdd = () => {
+//   return setCount(count + 1);
+// };
 
-//   const counterRest = () => {
-//     return setCount(count - 1);
-//   };
+// console.log(item)
 
-//   const counterReset = () => {
-//     return setCount(0);
-//   };
 
   return (
     <>
-      <div>{itemBuyed.title}</div>
-      <div>{itemBuyed.price} €</div>
-      <CounterApp/>      
+    
+    {/* <div class="item-container"> */}
+      <img src={item.img} alt="" className="img-thumbnail"/>
+      <div>{item.title}</div>
+      <div>{item.price * item.qty} €</div>
+      <div>{item.qty}</div>
+      {/* <CounterApp key={item.id} setCount={setCount} count={count} counterAdd={counterAdd} />    */}
+    {/* </div> */}
+      <button type="button" className="btn btn-secondary btn-sm counter-button" onClick={() => onAdd(item)}>+</button>
+      <button type="button" className="btn btn-secondary btn-sm counter-button" onClick={() => onRemove(item)}>-</button>
+      <button type="button" className="btn btn-secondary btn-sm counter-button" onClick={() => onReset(item)}>Reset</button>
+     
+      
 
+      
+      {/* {console.log(count)}   
+      <div>TOTAL: {itemBuyed.price}</div> */}
     </>
   );
 }

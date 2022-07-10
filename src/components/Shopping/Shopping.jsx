@@ -8,19 +8,15 @@ import products from "../../data/products";
 import './shopping.css'
 
 
-function Shopping( { products, count, setCount, cart, setCart}) {
+function Shopping( { cartItems, onAdd, onRemove, onReset}) {
   return (
     <>
       <section className="shoppingCart-container">
       <h2>Shopping Cart</h2>
-
-      {cart.map((itemBuyed) => (
-        // console.log(product)
-        // <div>{product.title}</div>
-        // <ShoppingCard key={product.id} product={product} cart={cart} setCart={setCart} />
-        <ShoppingCard key={itemBuyed.id} itemBuyed={itemBuyed} cart={cart} setCart={setCart} count={count} setCount={setCount}/>  
-      ))}
-      
+      {cartItems.length === 0 && <p>The cart is empty</p>}
+      {cartItems.map((item) => (
+        <ShoppingCard key={item.id} cartItems={cartItems} item={item} onAdd={onAdd} onRemove={onRemove} onReset={onReset}/>  
+      ))}      
       </section>
     </>
   );

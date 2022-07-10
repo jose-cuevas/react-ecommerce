@@ -3,31 +3,29 @@
 import "./productCard.css";
 import "../Products/products.css";
 
-function ProductCard({ product, cart, setCart, count, setCount }) {
+function ProductCard({ product, onAdd}) {
 
-  const counterAdd = () => {
-    return setCount(count + 1);    
-  };
+  // const counterAdd = () => {
+  //   return setCount(count + 1);    
+  // };
 
-  const handleAddToCart = () =>{
-    setCart([...cart,{id:product.id, title:product.title, price:product.price, image: product.img}])    
-  }
-
-
+  // const handleAddToCart = () =>{
+  //   setCart([...cart,{id:product.id, title:product.title, price:product.price, image: product.img}])    
+  // }
 
   // console.log(cart)
   return (
     <>
       <div className="card">
-        <img src={product.img} alt={product.img} className="product__img" />
+        <img src={product.img} alt={product.img} className="img-thumbnail" />
         <div>{product.title}</div>
         <div>{product.price} €</div>
         <button
           type="button"
           className="btn btn-secondary btn-sm counter-button"
-          onClick={handleAddToCart} 
+          onClick={() => onAdd(product)} 
         >
-          Add
+          Add to basket
         </button>
       </div>
     </>

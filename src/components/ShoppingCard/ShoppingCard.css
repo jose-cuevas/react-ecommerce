@@ -1,0 +1,9 @@
+
+.item-container{
+    display:flex;
+    /* margin-bottom: 1rem; */
+}
+
+.item__img{
+    max-width:50px
+}

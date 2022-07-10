@@ -1,47 +1,83 @@
 import { useEffect, useState } from "react";
 import Products from "./components/Products/Products";
 import Shopping from "./components/Shopping/Shopping";
+import CounterApp from "./components/CounterApp/CounterApp";
 
 import products from "./data/products";
 
 import "./App.css";
 
-// console.log(products)
 
-function App() {
-  const [count, setCount] = useState(0);
-  const [shoppingCart, setShoppingCart] = useState([]);
 
-  // console.log(count);
-  // console.log(cart);
-  console.log(shoppingCart);
-  // console.log(products)
+
+
+
+
+function App() { 
+
+  const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
-    // localStorage.setItem('product', JSON.stringify(products))
-    localStorage.setItem("count", JSON.stringify(count));
-  });
+    const cartItems = JSON.parse(localStorage.getItem('cartItems'));
+    if (cartItems) {
+      setCartItems(cartItems);
+    }
+  }, []);
 
-  return (
+
+  const onAdd = (product) => {
+    const exist = cartItems.find((item) => item.id === product.id);
+    if (exist) {
+      setCartItems(
+        cartItems.map((item) =>
+          item.id === product.id ? { ...exist, qty: exist.qty + 1 } : item
+        )
+      );
+    } else {
+      setCartItems([...cartItems, { ...product, qty: 1 }]);
+    }    
+  };
+  
+  const onRemove = (product) => {
+    const exist = cartItems.find((item) => item.id === product.id);
+    if (exist.qty === 1) {
+      setCartItems(cartItems.filter((item) => item.id !== product.id));
+    } else {
+      setCartItems(
+        cartItems.map((item) =>
+          item.id === product.id ? { ...exist, qty: exist.qty - 1 } : item
+        )
+      );
+    }
+  };
+
+  const onReset = (product) => {
+    setCartItems(cartItems.filter((item) => item.id !== product.id));    
+  }
+
+  // console.log(cartItems)
+
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
+
+  return (    
     <>
       <main className="app-container__flex">
         <Products
           products={products}
-          count={count}
-          setCount={setCount}
-          cart={shoppingCart}
-          setCart={setShoppingCart}
+          onAdd={onAdd}
         />
-        <Shopping
-          products={products}
-          count={count}
-          setCount={setCount}
-          cart={shoppingCart}
-          setCart={setShoppingCart}
+        <Shopping                 
+          cartItems={cartItems}
+          onAdd={onAdd}
+          onRemove={onRemove}
+          onReset={onReset}
         />
       </main>
     </>
   );
+  
 }
 
 export default App;
