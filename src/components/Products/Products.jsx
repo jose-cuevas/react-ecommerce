@@ -1,11 +1,9 @@
 import React from "react";
 import ProductCard from "../ProductCard/ProductCard.jsx";
-// import products from "../../data/products";
-import CounterApp from "../CounterApp/CounterApp.jsx";
+import {Link} from "react-router-dom"
 
 import "./products.css";
-// import 'bootstrap/dist/css/bootstrap.css';
-// import '../ProductCard/productCard.css'
+
 
 function Products({ products, onAdd }) {
   // const counterAdd = () => {
@@ -17,7 +15,9 @@ function Products({ products, onAdd }) {
   return (
     <>
       <section className="products-container">
+        {/* <Link to="/login"><h1>Shop</h1></Link> */}
         <h1>Shop</h1>
+        
         {/* {console.log(products)} */}
         <section className="products-container__grid">
           {products.map((product) => (

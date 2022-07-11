@@ -1,3 +1,7 @@
 .shoppingCart-container{
     margin-left: 2rem;
 }
+
+.checkout-container__total-price{
+    margin-top: 1.4rem;
+}

@@ -5,5 +5,12 @@
 }
 
 .item__img{
-    max-width:50px
+    max-width:75px
+}
+
+.button-container__add,
+.button-container__remove,
+.button-container__reset{
+    margin-right: 0.2rem;
+    margin-bottom: 1rem;
 }
