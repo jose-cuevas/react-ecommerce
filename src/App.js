@@ -4,8 +4,9 @@ import { BrowserRouter, Route, Routes, Link} from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar.jsx";
 import Products from "./components/Products/Products";
 import Shopping from "./components/Shopping/Shopping";
-
 import Login from "./components/Login/Login.jsx"
+import ProductDetail from "./components/ProductDetail/ProductDetail.jsx";
+import Error from "./components/Error/Error.jsx"
 
 import products from "./data/products";
 
@@ -66,38 +67,29 @@ function App() {
     <BrowserRouter> 
     {/* <Navbar/>    */}
       <Routes>
-        <Route path="/" element={<main className="app-container__flex">
-        <Products
-          products={products}
-          onAdd={onAdd}
-        />
-        <Shopping                 
-          cartItems={cartItems}
-          onAdd={onAdd}
-          onRemove={onRemove}
-          onReset={onReset}
-        />
-        </main>}/>        
+        {/* Dashboard Route starts here */}
+        <Route path="/" 
+          element={<main className="app-container__flex">
+          <Products
+            products={products}
+            onAdd={onAdd}
+          />
+          <Shopping                 
+            cartItems={cartItems}
+            onAdd={onAdd}
+            onRemove={onRemove}
+            onReset={onReset}
+          />
+          </main>}/>
+          <Route path="/products/:productId" element={<ProductDetail/>}/> 
+        
+        {/* Dashboard Route ends here */}  
+
         
         <Route path="login" element={<Login/>}/>
-      {/* </main>     */}
-    </Routes>
-    </BrowserRouter>
-
-{/* 
-      <main className="app-container__flex">
-        <Products
-          products={products}
-          onAdd={onAdd}
-        />
-        <Shopping                 
-          cartItems={cartItems}
-          onAdd={onAdd}
-          onRemove={onRemove}
-          onReset={onReset}
-        />
-      </main> */}
-      
+        <Route path="*" element={<Error/>}/>
+      </Routes>
+    </BrowserRouter>      
     </>
   );
   

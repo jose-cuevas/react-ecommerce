@@ -1,0 +1,19 @@
+.productDetail-container{
+    display: flex;
+    flex-direction: column;
+    
+    height:60vh;
+    max-width: 800px; 
+    margin: auto;
+    align-items: center;
+}
+
+
+.productDetail-container__img{
+    max-width: 500px;
+}
+
+.productDetail-container__p{
+    max-width: 800px; 
+    margin: auto;
+}

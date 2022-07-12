@@ -14,14 +14,10 @@ function Products({ products, onAdd }) {
  
   return (
     <>
-      <section className="products-container">
-        {/* <Link to="/login"><h1>Shop</h1></Link> */}
-        <h1>Shop</h1>
-        
-        {/* {console.log(products)} */}
+      <section className="products-container">        
+        <h1>Shop</h1>        
         <section className="products-container__grid">
-          {products.map((product) => (
-            
+          {products.map((product) => (            
             <ProductCard key={product.id} product={product} onAdd={onAdd} />            
           ))}
         </section>
