@@ -1,11 +1,12 @@
 
 .products-container{
-    background: #f3f3f3;    
+    background: #f3f3f3; 
+    padding: 2rem;   
 }
 
 
 .products-container__grid{
-    width:70vw; 
+    /* width:70vw;  */
     display: grid; 
     grid-template-columns: auto auto auto auto;
     gap: 1rem;

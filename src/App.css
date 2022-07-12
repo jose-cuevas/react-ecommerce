@@ -6,6 +6,7 @@ background: #f3f3f3;
 
 .app-container__flex{
   display:flex;
+  justify-content: center;
 }
 
 
