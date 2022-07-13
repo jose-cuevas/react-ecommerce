@@ -8,8 +8,8 @@ function Login() {
     <Link to="/"><p>Back Home</p></Link>
       <section className="container-sm container-form">
         
-        {/* <h2>Insert your email and password</h2> */}
-        <form>
+        <h2>Login</h2>
+        <form className="">
           <div class="row mb-3">
             <label for="inputEmail3" class="col-sm-2 col-form-label">
               Username

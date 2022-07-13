@@ -8,7 +8,8 @@ import Login from "./components/Login/Login.jsx"
 import ProductDetail from "./components/ProductDetail/ProductDetail.jsx";
 import Error from "./components/Error/Error.jsx"
 
-import products from "./data/products";
+
+// import products from "./data/products";
 
 import "./App.css";
 
@@ -17,6 +18,25 @@ function App() {
 
   const [cartItems, setCartItems] = useState([]);
 
+  // Fectching products from API
+  const [products, setProducts] = useState([])
+  const url = 'http://localhost:7000/products'
+  
+  const getProducts = async() =>{
+    const response = await fetch(url)
+    console.log(response)
+    const products = await response.json()
+    console.log(products) 
+    setProducts(products)
+  }
+  
+  useEffect(()=>{
+    getProducts()
+  },[])
+
+
+
+  // Getting cart items from local Storage
   useEffect(() => {
     const cartItems = JSON.parse(localStorage.getItem('cartItems'));
     if (cartItems) {

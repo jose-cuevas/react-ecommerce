@@ -1,4 +1,4 @@
-import React from "react";
+import {useState, useEffect} from "react";
 import ProductCard from "../ProductCard/ProductCard.jsx";
 import {Link} from "react-router-dom"
 
@@ -6,12 +6,9 @@ import "./products.css";
 
 
 function Products({ products, onAdd }) {
-  // const counterAdd = () => {
-  //   return setCount(count + 1);    
-  // };
 
-//  console.log(cart)
- 
+
+
   return (
     <>
       <section className="products-container">        
