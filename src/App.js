@@ -5,6 +5,8 @@ import Navbar from "./components/Navbar/Navbar.jsx";
 import Products from "./components/Products/Products";
 import Shopping from "./components/Shopping/Shopping";
 import Login from "./components/Login/Login.jsx"
+import SigIn from "./components/SigIn/SigIn.jsx";
+import Payment from "./components/Payment/Payment.jsx";
 import ProductDetail from "./components/ProductDetail/ProductDetail.jsx";
 import Error from "./components/Error/Error.jsx"
 
@@ -106,7 +108,9 @@ function App() {
         {/* Dashboard Route ends here */}  
 
         
-        <Route path="login" element={<Login/>}/>
+        <Route path="/login" element={<Login products={products} cartItems={cartItems}/>}/>
+        <Route path="/sigin" element={<SigIn/>}/>
+        <Route path="/payment" element={<Payment/>}/>
         <Route path="*" element={<Error/>}/>
       </Routes>
     </BrowserRouter>      

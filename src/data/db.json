@@ -18,5 +18,11 @@
     "price": 66,
     "img": "../img/img_3.jpeg"
   }
+],
+"users":[
+  {
+    "userName": "jose",
+    "email": "jose@gmail.com"
+  }
 ]
 }

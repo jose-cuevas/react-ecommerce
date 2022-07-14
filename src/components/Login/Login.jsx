@@ -1,35 +1,97 @@
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
+import swal from "sweetalert";
 import "./login.css";
 
-function Login() {
+function Login({ products, cartItems }) {
+  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  const [users, setUsers] = useState([]);
+
+  // Fetching users from API json-server
+  const fetchUsers = async () => {
+    const response = await fetch("http://localhost:7000/users");
+    const users = await response.json();
+    setUsers(users);
+  };
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // console.log(userName, email)
+
+    if (userName && email) {
+      console.log(users);
+      users.map((user) => {
+        if (user.userName === userName && user.email === email) {
+          console.log(cartItems);
+          return navigate("/payment", { state: [cartItems] });
+        } else {
+          swal("This user doen´t exist");
+        }
+      });
+    } else {
+      // * insert sweet alert "Please insert correct data"
+      swal("Please insert correct data");
+      return navigate("/");
+    }
+  };
+
   return (
     <>
-    <Link to="/"><p>Back Home</p></Link>
-      <section className="container-sm container-form">
+      <Link to="/">
+        <p>Back Home</p>
+      </Link>
+      <h2 className="text-center my-5">
+          Login
+        </h2>
+      <section className="container sm">
         
-        <h2>Login</h2>
-        <form className="">
-          <div class="row mb-3">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">
-              Username
-            </label>
-            <div class="col-sm-10">
-              <input type="email" class="form-control" id="inputEmail3" required />
-            </div>
+        <section clasName="">
+          <div className="col-6">
+            <form className="form" onSubmit={handleSubmit}>
+              <div className="p-3 ">
+                <label className="form-label" htmlFor="userName">
+                  User:
+                </label>
+                <input
+                  className="form-control"
+                  type="text"
+                  id="userName"
+                  name="userName"
+                  value={userName}
+                  onChange={(e) => setUserName(e.target.value)}
+                />
+              </div>
+              <div className="p-3">
+                <label className="form-label" htmlFor="email">
+                  Email:
+                </label>
+                <input
+                  className="form-control"
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+              <button type="submit" className="btn btn-primary ">
+                Login
+              </button>
+              <div className="form-text">
+                Are you a new user? Please,{" "}
+                <Link to="/sigin">register here</Link>
+              </div>
+            </form>
           </div>
-          <div class="row mb-3">
-            <label for="inputPassword3" class="col-sm-2 col-form-label">
-              Password
-            </label>
-            <div class="col-sm-10">
-              <input type="password" class="form-control" id="inputPassword3" />
-            </div>
-          </div>
-          <button type="submit" class="btn btn-primary container-fluid">
-            Sign in
-          </button>
-        </form>
+        </section>
       </section>
     </>
   );
