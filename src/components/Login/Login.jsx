@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import "./login.css";
 
-function Login({ products, cartItems }) {
+function Login({ products, cartItems, onAdd, onRemove, onReset }) {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [users, setUsers] = useState([]);
@@ -31,13 +31,12 @@ function Login({ products, cartItems }) {
       users.map((user) => {
         if (user.userName === userName && user.email === email) {
           console.log(cartItems);
-          return navigate("/payment", { state: [cartItems] });
+          return navigate("/payment", { state: cartItems });
         } else {
-          swal("This user doen´t exist");
+          swal("This user doesn´t exist");
         }
       });
     } else {
-      // * insert sweet alert "Please insert correct data"
       swal("Please insert correct data");
       return navigate("/");
     }

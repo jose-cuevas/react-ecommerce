@@ -108,9 +108,9 @@ function App() {
         {/* Dashboard Route ends here */}  
 
         
-        <Route path="/login" element={<Login products={products} cartItems={cartItems}/>}/>
+        <Route path="/login" element={<Login products={products} cartItems={cartItems} onAdd={onAdd} onRemove={onRemove} onReset={onReset}/>}/>
         <Route path="/sigin" element={<SigIn/>}/>
-        <Route path="/payment" element={<Payment/>}/>
+        <Route path="/payment" element={<Payment cartItems={cartItems} onAdd={onAdd} onRemove={onRemove} onReset={onReset}/>}/>
         <Route path="*" element={<Error/>}/>
       </Routes>
     </BrowserRouter>      
