@@ -110,6 +110,7 @@ function App() {
         
         <Route path="/login" element={<Login products={products} cartItems={cartItems} onAdd={onAdd} onRemove={onRemove} onReset={onReset}/>}/>
         <Route path="/sigin" element={<SigIn/>}/>
+        
         <Route path="/payment" element={<Payment cartItems={cartItems} onAdd={onAdd} onRemove={onRemove} onReset={onReset}/>}/>
         <Route path="*" element={<Error/>}/>
       </Routes>

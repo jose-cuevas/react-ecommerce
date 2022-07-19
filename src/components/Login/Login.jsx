@@ -31,14 +31,13 @@ function Login({ products, cartItems, onAdd, onRemove, onReset }) {
       users.map((user) => {
         if (user.userName === userName && user.email === email) {
           console.log(cartItems);
-          return navigate("/payment", { state: cartItems });
+          return navigate("/payment", { state: cartItems, onAdd, onRemove,  });
         } else {
           swal("This user doesn´t exist");
         }
-      });
+      });  
     } else {
-      swal("Please insert correct data");
-      return navigate("/");
+      swal("Please insert correct data");      
     }
   };
 
@@ -87,6 +86,10 @@ function Login({ products, cartItems, onAdd, onRemove, onReset }) {
               <div className="form-text">
                 Are you a new user? Please,{" "}
                 <Link to="/sigin">register here</Link>
+              </div>
+
+              <div className="form-text">
+                <p>Forgot your password?</p>
               </div>
             </form>
           </div>

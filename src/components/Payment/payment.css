@@ -1,0 +1,9 @@
+.payment-container__img{
+    width: 100px;
+    height: 100%;
+}
+
+.payment-container__btn{
+    width: 3rem;
+    height: 100%;
+}

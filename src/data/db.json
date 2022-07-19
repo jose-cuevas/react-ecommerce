@@ -22,7 +22,8 @@
 "users":[
   {
     "userName": "jose",
-    "email": "jose@gmail.com"
+    "email": "jose@gmail.com",
+    "password": 123456
   }
 ]
 }
