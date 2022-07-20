@@ -16,9 +16,10 @@ function Shopping( { cartItems, onAdd, onRemove, onReset}) {
   return totalCheckout
   }
 
-  console.log(cartItems)
+  // console.log(cartItems)
   return (
     <>
+    <Link to="/wishlist">Whislist</Link>
       <section className="shoppingCart-container">
       <h2>Shopping Cart</h2>
       {cartItems.length === 0 && <p>The cart is empty</p>}

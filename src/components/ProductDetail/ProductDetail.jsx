@@ -5,7 +5,7 @@ import "./productDetail.css"
 
 function ProductDetail() {
   const {productId} = useParams()
-  console.log(typeof productId)
+  
 
   const product = products.find(product => product.id == productId)
   // console.log(products)
