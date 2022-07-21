@@ -1,11 +1,11 @@
 
 .item-container{
-    display:flex;
+    /* display:flex; */
     /* margin-bottom: 1rem; */
 }
 
 .item__img{
-    max-width:75px
+    max-width:55px
 }
 
 .button-container__add,

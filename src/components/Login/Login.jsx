@@ -31,13 +31,13 @@ function Login({ products, cartItems, onAdd, onRemove, onReset }) {
       users.map((user) => {
         if (user.userName === userName && user.email === email) {
           console.log(cartItems);
-          return navigate("/payment", { state: cartItems, onAdd, onRemove,  });
+          return navigate("/payment", { state: cartItems, onAdd, onRemove });
         } else {
           swal("This user doesn´t exist");
         }
-      });  
+      });
     } else {
-      swal("Please insert correct data");      
+      swal("Please insert correct data");
     }
   };
 
@@ -46,15 +46,16 @@ function Login({ products, cartItems, onAdd, onRemove, onReset }) {
       <Link to="/">
         <p>Back Home</p>
       </Link>
-      <h2 className="text-center my-5">
-          Login
-        </h2>
-      <section className="container sm">
-        
-        <section clasName="">
+      <section className="container my-5">
+        <div className="text-center">
+          <h1>Login</h1>
+          <p className="lead">Please, insert your user data</p>
+        </div>
+
+        <div className="row justify-content-center my-3" >
           <div className="col-6">
             <form className="form" onSubmit={handleSubmit}>
-              <div className="p-3 ">
+              <div className="my-3">
                 <label className="form-label" htmlFor="userName">
                   User:
                 </label>
@@ -63,11 +64,12 @@ function Login({ products, cartItems, onAdd, onRemove, onReset }) {
                   type="text"
                   id="userName"
                   name="userName"
+                  placeholder="e.g. mark"
                   value={userName}
                   onChange={(e) => setUserName(e.target.value)}
                 />
               </div>
-              <div className="p-3">
+              <div className="my-3">
                 <label className="form-label" htmlFor="email">
                   Email:
                 </label>
@@ -76,24 +78,30 @@ function Login({ products, cartItems, onAdd, onRemove, onReset }) {
                   type="email"
                   id="email"
                   name="email"
+                  placeholder="e.g. mark@gmail.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
-              <button type="submit" className="btn btn-primary ">
-                Login
-              </button>
-              <div className="form-text">
-                Are you a new user? Please,{" "}
-                <Link to="/sigin">register here</Link>
-              </div>
+              <div className="text-center my-3">
+                <button type="submit" className="btn btn-primary mb-2">
+                  Login
+                </button>
+                <div className="form-text">
+                  Are you a new user? Please,{" "}
+                  <Link to="/sigin">register here</Link>
+                </div>
 
-              <div className="form-text">
-                <p>Forgot your password?</p>
+                <div className="form-text">
+                  <p>
+                    Forgot your password?, Please,{" "}
+                    <Link to="/forgot">click here</Link>
+                  </p>
+                </div>
               </div>
             </form>
           </div>
-        </section>
+        </div>
       </section>
     </>
   );

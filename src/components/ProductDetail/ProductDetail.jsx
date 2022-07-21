@@ -16,7 +16,7 @@ function ProductDetail() {
   return (
     <>
     <Link to="/">Back Home</Link>
-    <h1>Product Detail</h1>
+    <h1 className="text-center">Product Detail</h1>
     <article className="productDetail-container">
       
       <img src={img} alt="" className='container-sm productDetail-container__img' />

@@ -7,12 +7,14 @@ import Shopping from "./components/Shopping/Shopping";
 import WishList from "./components/WishList/WishList.jsx";
 import Login from "./components/Login/Login.jsx";
 import SigIn from "./components/SigIn/SigIn.jsx";
+import ForgotPassword from "./components/forgotPassword/ForgotPassword.jsx";
 import Payment from "./components/Payment/Payment.jsx";
 import ProductDetail from "./components/ProductDetail/ProductDetail.jsx";
 import Error from "./components/Error/Error.jsx";
 
 // import products from "./data/products";
-
+import swal from "sweetalert";
+import Swal from "sweetalert";
 import "./App.css";
 
 function App() {
@@ -26,43 +28,36 @@ function App() {
   // * useReducer() whishList
 
   const reducer = (state, action) => {
-
-    if (action.type === "ADD_WISHLIST") {      
-      const wishList = [...state, action.payload]
-      const uniqueWishList = [...new Set (wishList)]
-      return uniqueWishList
+    if (action.type === "ADD_WISHLIST") {
+      const wishList = [...state, action.payload];
+      const uniqueWishList = [...new Set(wishList)];
+      return uniqueWishList;
     }
 
-    if (action.type === "REMOVE_WISHLIST"){      
-      return state.filter((wishItem)=> wishItem.id !== action.payload.id)    
+    if (action.type === "REMOVE_WISHLIST") {
+      return state.filter((wishItem) => wishItem.id !== action.payload.id);
     }
   };
-
-  
 
   const initialState = [];
 
   const init = () => {
-    return JSON.parse(localStorage.getItem('state')) || initialState
-  }
+    return JSON.parse(localStorage.getItem("state")) || initialState;
+  };
 
-  const [state, dispatch] = useReducer(reducer, initialState, init);  
+  const [state, dispatch] = useReducer(reducer, initialState, init);
 
-  useEffect(()=>{
-    localStorage.setItem('state', JSON.stringify(state))
-  }, [state])
-
+  useEffect(() => {
+    localStorage.setItem("state", JSON.stringify(state));
+  }, [state]);
 
   const addWishList = (wishItem) => {
-
     dispatch({ type: "ADD_WISHLIST", payload: wishItem });
   };
 
-  const removeWishList = (wishItem)=>{
-    dispatch({type:'REMOVE_WISHLIST', payload: wishItem})
-  }
-
-  
+  const removeWishList = (wishItem) => {
+    dispatch({ type: "REMOVE_WISHLIST", payload: wishItem });
+  };
 
   // * useReducer() whishLIst ends here
   // --------------------------------
@@ -92,7 +87,16 @@ function App() {
     }
   }, []);
 
+
+
   const onAdd = (product) => {
+    // swal("item added");
+    Swal({
+      icon: 'success',
+      title: 'Product added',
+      text: 'Enjoy you purchase!'
+    })
+
     const exist = cartItems.find((item) => item.id === product.id);
     if (exist) {
       setCartItems(
@@ -106,6 +110,8 @@ function App() {
   };
 
   const onRemove = (product) => {
+    
+
     const exist = cartItems.find((item) => item.id === product.id);
     if (exist.qty === 1) {
       setCartItems(cartItems.filter((item) => item.id !== product.id));
@@ -119,6 +125,11 @@ function App() {
   };
 
   const onReset = (product) => {
+    Swal({
+      icon: 'error',
+      title: 'Product delete',
+      text: 'See you soon!'
+    })
     setCartItems(cartItems.filter((item) => item.id !== product.id));
   };
 
@@ -127,7 +138,9 @@ function App() {
   }, [cartItems]);
 
   return (
+    
     <>
+    <Navbar/>
       {/* Route */}
       <BrowserRouter>
         {/* <Navbar/>    */}
@@ -155,7 +168,16 @@ function App() {
 
           {/* Dashboard Route ends here */}
           {console.log(state)}
-          <Route path="/wishlist" element={<WishList state={state} onAdd={onAdd} removeWishList={removeWishList} />} />
+          <Route
+            path="/wishlist"
+            element={
+              <WishList
+                state={state}
+                onAdd={onAdd}
+                removeWishList={removeWishList}
+              />
+            }
+          />
 
           <Route
             path="/login"
@@ -170,6 +192,7 @@ function App() {
             }
           />
           <Route path="/sigin" element={<SigIn />} />
+          <Route path="/forgot" element={<ForgotPassword />} />
 
           <Route
             path="/payment"

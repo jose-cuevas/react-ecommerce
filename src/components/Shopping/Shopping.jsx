@@ -19,9 +19,9 @@ function Shopping( { cartItems, onAdd, onRemove, onReset}) {
   // console.log(cartItems)
   return (
     <>
-    <Link to="/wishlist">Whislist</Link>
+    {/* <Link to="/wishlist">Whislist</Link> */}
       <section className="shoppingCart-container">
-      <h2>Shopping Cart</h2>
+      <h3 className="mb-4">Shopping Cart</h3>
       {cartItems.length === 0 && <p>The cart is empty</p>}
       {cartItems.map((item) => (
         <ShoppingCard key={item.id} cartItems={cartItems} item={item} onAdd={onAdd} onRemove={onRemove} onReset={onReset}/>  

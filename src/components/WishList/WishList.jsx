@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 import "./wishlist.css";
-import { BsFillTrashFill } from "react-icons/bs";
+import { BsCart, BsTrash } from "react-icons/bs";
 
 function WishList({ state, onAdd, removeWishList }) {
   const whishList = state;
@@ -11,31 +11,35 @@ function WishList({ state, onAdd, removeWishList }) {
       {/* <h1>WishList</h1> */}
       {whishList.map((wish) => {
         return (
-          <div key={wish.id} className="container">
-            <div className="row mb-5 align-items-center mx-auto">
-              <div className="col-md-2">
+          <div key={wish.id} className="container my-5 ">
+            <div className="row mb-5 align-items-center mx-auto border p-4">
+              <div className="col-sm-2">
                 <img
                   className="wish-container__img"
                   src={wish.img}
                   alt={wish.title}
                 ></img>
               </div>
-              <div className="col-md-7">
-                <p>Product: {wish.title} {wish.price} €</p>
-                <p></p>
+              <div className="col-sm-7 ">
+                <p className="mx-3 my-0">
+                  Product: {wish.title}
+                </p>
+                <p className="mx-3 my-0">
+                  Price: {wish.price} €
+                </p>
               </div>
-              <div className="col-md-3">
+              <div className="col-sm-3 d-flex">
                 <button
-                  className="btn btn-primary btn-sm mx-2 mb-2"
+                  className="btn btn-sm mx-2 mb-2"
                   onClick={() => onAdd(wish)}
                 >
-                  Add to basket
+                  <BsCart style={{ fontSize: "1.5rem" }} />{" "}
                 </button>
                 <button
                   className="btn btn-sm mx-2 mb-2"
                   onClick={() => removeWishList(wish)}
                 >
-                  <BsFillTrashFill/>
+                  <BsTrash style={{ fontSize: "1.5rem" }} />
                 </button>
               </div>
             </div>
