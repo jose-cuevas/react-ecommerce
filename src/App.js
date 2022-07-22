@@ -153,7 +153,7 @@ function App() {
                 <Products
                   products={products}
                   onAdd={onAdd}
-                  addWishList={addWishList}
+                  addWishList={addWishList}                 
                 />
                 <Shopping
                   cartItems={cartItems}
