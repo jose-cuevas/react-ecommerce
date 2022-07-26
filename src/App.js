@@ -1,6 +1,8 @@
 import { useEffect, useState, useReducer } from "react";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 
+import { useFetch } from "./components/hooks/useFetch";
+
 import Navbar from "./components/Navbar/Navbar.jsx";
 import Products from "./components/Products/Products";
 import Shopping from "./components/Shopping/Shopping";
@@ -47,8 +49,9 @@ function App() {
 
   const [state, dispatch] = useReducer(reducer, initialState, init);
 
+  // Save wishLIst on localStorage
   useEffect(() => {
-    localStorage.setItem("state", JSON.stringify(state));
+    localStorage.setItem("wishList", JSON.stringify(state));
   }, [state]);
 
   const addWishList = (wishItem) => {
@@ -59,15 +62,17 @@ function App() {
     dispatch({ type: "REMOVE_WISHLIST", payload: wishItem });
   };
 
-  // * useReducer() whishLIst ends here
+  // * useReducer() whishList ends here
   // --------------------------------
   // --------------------------------
   // --------------------------------
   // --------------------------------
 
+
   // Fectching products from API
   const url = "http://localhost:7000/products";
-  const getProducts = async () => {
+
+   const getProducts = async () => {
     const response = await fetch(url);
     // console.log(response);
     const products = await response.json();
@@ -87,15 +92,13 @@ function App() {
     }
   }, []);
 
-
-
   const onAdd = (product) => {
     // swal("item added");
     Swal({
-      icon: 'success',
-      title: 'Product added',
-      text: 'Enjoy you purchase!'
-    })
+      icon: "success",
+      title: "Product added",
+      text: "Enjoy you purchase!",
+    });
 
     const exist = cartItems.find((item) => item.id === product.id);
     if (exist) {
@@ -110,8 +113,6 @@ function App() {
   };
 
   const onRemove = (product) => {
-    
-
     const exist = cartItems.find((item) => item.id === product.id);
     if (exist.qty === 1) {
       setCartItems(cartItems.filter((item) => item.id !== product.id));
@@ -126,10 +127,10 @@ function App() {
 
   const onReset = (product) => {
     Swal({
-      icon: 'error',
-      title: 'Product delete',
-      text: 'See you soon!'
-    })
+      icon: "error",
+      title: "Product delete",
+      text: "See you soon!",
+    });
     setCartItems(cartItems.filter((item) => item.id !== product.id));
   };
 
@@ -138,9 +139,8 @@ function App() {
   }, [cartItems]);
 
   return (
-    
     <>
-    <Navbar/>
+      <Navbar cartItems={cartItems}/>
       {/* Route */}
       <BrowserRouter>
         {/* <Navbar/>    */}
@@ -153,7 +153,7 @@ function App() {
                 <Products
                   products={products}
                   onAdd={onAdd}
-                  addWishList={addWishList}                 
+                  addWishList={addWishList}
                 />
                 <Shopping
                   cartItems={cartItems}
