@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import {BsFillCartFill, BsFillHeartFill} from "react-icons/bs"
 
-function Navbar({cartItems}) {
+function Navbar({ cartItems, state}) {
   
   const totalCartItems = cartItems.reduce((acc, item)=>{
     const {qty} = item
@@ -9,11 +9,14 @@ function Navbar({cartItems}) {
   },0)
 
   // TODO: Get wishlist by props or from localStorage (useEffect)
-  // const totalWishItems = wishList.reduce((acc, item)=>{
-  //   const {qty} = item
-  //   return acc += qty
-  // },0)
+  const totalWishItems = state.reduce((acc, item)=>{
+    const {qty} = item
+    return acc += qty
+  },0)
   
+  console.log(`wishlist array: ${state}`)
+  console.log(`total wish items: ${totalWishItems}`)
+  console.log(totalWishItems)
   
 
   return (

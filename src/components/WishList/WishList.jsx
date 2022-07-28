@@ -7,7 +7,7 @@ function WishList({ state, onAdd, removeWishList }) {
   const whishList = state;
   return (
     <>
-      <Link to="/">Back to home</Link>
+      {/* <Link to="/">Back to home</Link> */}
       {/* <h1>WishList</h1> */}
       {whishList.map((wish) => {
         return (
@@ -43,27 +43,6 @@ function WishList({ state, onAdd, removeWishList }) {
                 </button>
               </div>
             </div>
-
-            {/* 
-            <img
-              className="wish-container__img"
-              src={wish.img}
-              alt={wish.title}
-            ></img>
-            <div>{wish.title}</div>
-            <div>{wish.price}</div>
-            <button
-              className="btn btn-primary btn-sm mx-2 mb-2"
-              onClick={() => onAdd(wish)}
-            >
-              Add to basket
-            </button>
-            <button
-              className="btn btn-primary btn-sm mx-2 mb-2"
-              onClick={() => removeWishList(wish)}
-            >
-              Remove
-            </button> */}
           </div>
         );
       })}

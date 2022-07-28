@@ -43,9 +43,9 @@ function Login({ products, cartItems, onAdd, onRemove, onReset }) {
 
   return (
     <>
-      <Link to="/">
+      {/* <Link to="/">
         <p>Back Home</p>
-      </Link>
+      </Link> */}
       <section className="container my-5">
         <div className="text-center">
           <h1>Login</h1>

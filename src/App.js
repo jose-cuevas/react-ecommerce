@@ -51,7 +51,7 @@ function App() {
 
   // Save wishLIst on localStorage
   useEffect(() => {
-    localStorage.setItem("wishList", JSON.stringify(state));
+    localStorage.setItem("state", JSON.stringify(state));
   }, [state]);
 
   const addWishList = (wishItem) => {
@@ -140,7 +140,7 @@ function App() {
 
   return (
     <>
-      <Navbar cartItems={cartItems}/>
+      <Navbar cartItems={cartItems} state={state}/>
       {/* Route */}
       <BrowserRouter>
         {/* <Navbar/>    */}
