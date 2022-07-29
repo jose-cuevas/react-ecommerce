@@ -3,12 +3,12 @@ import { useState } from 'react'
 
 
 
-export const CartItemsContext = React.createContext({})
+export const ShoppingContext = React.createContext({})
 
 export default function ShoppingCartContext({children}) {
-const [cartItems, setCartItems] = useState([])
+const [cartItems_1, setCartItems_1] = useState([])
   return (
     
-    <CartItemsContext.Provider value={{cartItems, setCartItems}}>{children}</CartItemsContext.Provider>
+    <ShoppingContext.Provider value={{cartItems_1, setCartItems_1}}>{children}</ShoppingContext.Provider>
   )
 }

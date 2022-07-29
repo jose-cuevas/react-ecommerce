@@ -141,7 +141,7 @@ function App() {
 
   return (
     <>
-      <ShoppingCartContext>
+      
         <Navbar cartItems={cartItems} state={state} />
         {/* Route */}
         <BrowserRouter>
@@ -208,7 +208,7 @@ function App() {
             <Route path="*" element={<Error />} />
           </Routes>
         </BrowserRouter>
-      </ShoppingCartContext>
+      
     </>
   );
 }

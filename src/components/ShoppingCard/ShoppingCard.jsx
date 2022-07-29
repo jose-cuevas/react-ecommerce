@@ -1,7 +1,7 @@
 import { BsPlusLg, BsDashLg, BsTrash } from "react-icons/bs";
 
 import "./ShoppingCard.css";
-function ShoppingCard({ item, cartItems, onAdd, onRemove, onReset }) {
+function ShoppingCard({ item, onAdd, onRemove, onReset }) {
   return (
     <>
       <div className="container border mb-3 p-3">
