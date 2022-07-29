@@ -14,10 +14,6 @@ function Navbar({ cartItems, state}) {
     return acc += qty
   },0)
   
-  console.log(`wishlist array: ${state}`)
-  console.log(`total wish items: ${totalWishItems}`)
-  console.log(totalWishItems)
-  
 
   return (
     <>

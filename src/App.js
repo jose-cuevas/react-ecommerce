@@ -14,6 +14,8 @@ import Payment from "./components/Payment/Payment.jsx";
 import ProductDetail from "./components/ProductDetail/ProductDetail.jsx";
 import Error from "./components/Error/Error.jsx";
 
+import ShoppingCartContext from "./context/ShoppingCartContext";
+
 // import products from "./data/products";
 import swal from "sweetalert";
 import Swal from "sweetalert";
@@ -68,11 +70,10 @@ function App() {
   // --------------------------------
   // --------------------------------
 
-
   // Fectching products from API
   const url = "http://localhost:7000/products";
 
-   const getProducts = async () => {
+  const getProducts = async () => {
     const response = await fetch(url);
     // console.log(response);
     const products = await response.json();
@@ -140,74 +141,74 @@ function App() {
 
   return (
     <>
-      <Navbar cartItems={cartItems} state={state}/>
-      {/* Route */}
-      <BrowserRouter>
-        {/* <Navbar/>    */}
-        <Routes>
-          {/* Dashboard Route starts here */}
-          <Route
-            path="/"
-            element={
-              <main className="app-container__flex">
-                <Products
-                  products={products}
+      <ShoppingCartContext>
+        <Navbar cartItems={cartItems} state={state} />
+        {/* Route */}
+        <BrowserRouter>
+          {/* <Navbar/>    */}
+          <Routes>
+            {/* Dashboard Route starts here */}
+            <Route
+              path="/"
+              element={
+                <main className="app-container__flex">
+                  <Products
+                    products={products}
+                    onAdd={onAdd}
+                    addWishList={addWishList}
+                  />
+                  <Shopping
+                    cartItems={cartItems}
+                    onAdd={onAdd}
+                    onRemove={onRemove}
+                    onReset={onReset}
+                  />
+                </main>
+              }
+            />
+            <Route path="/products/:productId" element={<ProductDetail />} />
+
+            {/* Dashboard Route ends here */}
+            {console.log(state)}
+            <Route
+              path="/wishlist"
+              element={
+                <WishList
+                  state={state}
                   onAdd={onAdd}
-                  addWishList={addWishList}
+                  removeWishList={removeWishList}
                 />
-                <Shopping
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <Login
+                  products={products}
                   cartItems={cartItems}
                   onAdd={onAdd}
                   onRemove={onRemove}
                   onReset={onReset}
                 />
-              </main>
-            }
-          />
-          <Route path="/products/:productId" element={<ProductDetail />} />
-
-          {/* Dashboard Route ends here */}
-          {console.log(state)}
-          <Route
-            path="/wishlist"
-            element={
-              <WishList
-                state={state}
-                onAdd={onAdd}
-                removeWishList={removeWishList}
-              />
-            }
-          />
-
-          <Route
-            path="/login"
-            element={
-              <Login
-                products={products}
-                cartItems={cartItems}
-                onAdd={onAdd}
-                onRemove={onRemove}
-                onReset={onReset}
-              />
-            }
-          />
-          <Route path="/sigin" element={<SigIn />} />
-          <Route path="/forgot" element={<ForgotPassword />} />
-
-          <Route
-            path="/payment"
-            element={
-              <Payment
-                cartItems={cartItems}
-                onAdd={onAdd}
-                onRemove={onRemove}
-                onReset={onReset}
-              />
-            }
-          />
-          <Route path="*" element={<Error />} />
-        </Routes>
-      </BrowserRouter>
+              }
+            />
+            <Route path="/sigin" element={<SigIn />} />
+            <Route path="/forgot" element={<ForgotPassword />} />
+            <Route
+              path="/payment"
+              element={
+                <Payment
+                  cartItems={cartItems}
+                  onAdd={onAdd}
+                  onRemove={onRemove}
+                  onReset={onReset}
+                />
+              }
+            />
+            <Route path="*" element={<Error />} />
+          </Routes>
+        </BrowserRouter>
+      </ShoppingCartContext>
     </>
   );
 }

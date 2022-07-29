@@ -1,11 +1,15 @@
 import React from "react";
 import ShoppingCard from "../ShoppingCard/ShoppingCard.jsx"
 import {Link} from "react-router-dom"
+import { useContext } from "react";
+
+import {CartItemsContext} from "../../context/ShoppingCartContext.jsx"
 
 import './shopping.css'
 
 
-function Shopping( { cartItems, onAdd, onRemove, onReset}) {
+function Shopping( { onAdd, onRemove, onReset}) {
+  const {cartItems, setCartItems} = useContext(CartItemsContext)
 
   let totalCheckout = null;
   const totalPrice = () =>{
