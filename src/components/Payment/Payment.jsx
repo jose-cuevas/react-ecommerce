@@ -4,9 +4,13 @@ import ShoppingCard from "../ShoppingCard/ShoppingCard";
 import { useLocation } from "react-router-dom";
 import { BsPlusLg, BsDashLg, BsTrash } from "react-icons/bs";
 
+import { useContext } from "react";
+import { CartContext } from "../../App";
+
 import "./payment.css";
 
-function Payment({ cartItems, onAdd, onRemove, onReset }) {
+function Payment({ onAdd, onRemove, onReset }) {
+  const {cartItems, setCartItems} = useContext(CartContext)
   const totalBuyed = cartItems.reduce((total, item) => {
     const { price, qty } = item;
     const itemTotal = price * qty;

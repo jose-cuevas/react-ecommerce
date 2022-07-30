@@ -1,4 +1,6 @@
-import { useEffect, useState, useReducer } from "react";
+import React from "react";
+
+import { useEffect, useState, useReducer, createContext } from "react";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 
 import { useFetch } from "./components/hooks/useFetch";
@@ -14,12 +16,15 @@ import Payment from "./components/Payment/Payment.jsx";
 import ProductDetail from "./components/ProductDetail/ProductDetail.jsx";
 import Error from "./components/Error/Error.jsx";
 
-import ShoppingCartContext from "./context/ShoppingCartContext";
+
 
 // import products from "./data/products";
 import swal from "sweetalert";
 import Swal from "sweetalert";
 import "./App.css";
+
+// * Creating context for cartItems array
+export const CartContext = React.createContext({});
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -85,7 +90,7 @@ function App() {
     getProducts();
   }, []);
 
-  // Getting cart items from local Storage
+  // * Getting cart items from local Storage
   useEffect(() => {
     const cartItems = JSON.parse(localStorage.getItem("cartItems"));
     if (cartItems) {
@@ -139,9 +144,11 @@ function App() {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
 
+  
+
   return (
     <>
-      
+      <CartContext.Provider value={{cartItems, setCartItems}}>
         <Navbar cartItems={cartItems} state={state} />
         {/* Route */}
         <BrowserRouter>
@@ -158,7 +165,7 @@ function App() {
                     addWishList={addWishList}
                   />
                   <Shopping
-                    cartItems={cartItems}
+                    
                     onAdd={onAdd}
                     onRemove={onRemove}
                     onReset={onReset}
@@ -198,7 +205,6 @@ function App() {
               path="/payment"
               element={
                 <Payment
-                  cartItems={cartItems}
                   onAdd={onAdd}
                   onRemove={onRemove}
                   onReset={onReset}
@@ -208,7 +214,7 @@ function App() {
             <Route path="*" element={<Error />} />
           </Routes>
         </BrowserRouter>
-      
+      </CartContext.Provider>
     </>
   );
 }

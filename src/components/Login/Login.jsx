@@ -2,13 +2,20 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+import { ShoppingContext } from "../../context/ShoppingCartContext";
+import { useContext } from "react";
+
 import swal from "sweetalert";
 import "./login.css";
 
-function Login({ products, cartItems, onAdd, onRemove, onReset }) {
+function Login({ products, onAdd, onRemove, onReset }) {
+
+  const {cartItems, setCartItems} = useContext(ShoppingContext)
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [users, setUsers] = useState([]);
+
+  console.log(cartItems)
 
   // Fetching users from API json-server
   const fetchUsers = async () => {
@@ -30,7 +37,7 @@ function Login({ products, cartItems, onAdd, onRemove, onReset }) {
       console.log(users);
       users.map((user) => {
         if (user.userName === userName && user.email === email) {
-          console.log(cartItems);
+          // console.log(cartItems);
           return navigate("/payment", { state: cartItems, onAdd, onRemove });
         } else {
           swal("This user doesn´t exist");
