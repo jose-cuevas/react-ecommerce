@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {Link} from "react-router-dom";
 import products from "../../data/products"
 
@@ -5,6 +6,12 @@ import "./productCard.css";
 import "../Products/products.css";
 
 function ProductCard({ product, onAdd, addWishList}) {  
+  const [isAdded, setIsAdded] = useState(false)
+
+  const addToWishList = (product)=>{
+    addWishList(product)
+    setIsAdded(true)
+  }
   return (
     <>
     {/* {console.log(state)} */}
@@ -20,7 +27,8 @@ function ProductCard({ product, onAdd, addWishList}) {
         >
           Add to basket
         </button>
-        <button type="button" className="btn btn-primary btn-sm" onClick={() => addWishList(product)}>Add to whishlist</button>
+        <button type="button" disabled={isAdded ? true : false} className="btn btn-primary btn-sm" onClick={() => addToWishList(product)}>Add to whishlist</button>
+        
         
         
       </article>

@@ -3,12 +3,14 @@ import { Link } from "react-router-dom";
 import "./wishlist.css";
 import { BsCart, BsTrash } from "react-icons/bs";
 
-function WishList({ state, onAdd, removeWishList }) {
+function WishList({ state, onAdd, removeWishList,addWishList }) {
   const whishList = state;
+  console.log(whishList)
+  // console.log(JSON.parse(localStorage.getItem("state")))
   return (
     <>
       {/* <Link to="/">Back to home</Link> */}
-      {/* <h1>WishList</h1> */}
+      <h1>WishList</h1>
       {whishList.map((wish) => {
         return (
           <div key={wish.id} className="container my-5 ">
