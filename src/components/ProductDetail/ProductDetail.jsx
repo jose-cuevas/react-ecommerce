@@ -8,14 +8,12 @@ function ProductDetail() {
   
 
   const product = products.find(product => product.id == productId)
-  // console.log(products)
-  // console.log(typeof products[product.id])
-  console.log(product)
+  
 
   const {title, price, img} = product
   return (
     <>
-    <Link to="/">Back Home</Link>
+    {/* <Link to="/">Back Home</Link> */}
     <h1 className="text-center">Product Detail</h1>
     <article className="productDetail-container">
       

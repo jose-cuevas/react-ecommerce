@@ -8,14 +8,12 @@ import { useContext } from "react";
 import swal from "sweetalert";
 import "./login.css";
 
-function Login({ products, onAdd, onRemove, onReset }) {
+function Login({ products, onAdd, onRemove, onReset, isLoggedIn, setIsLoggedIn,setUserRegister }) {
 
   const {cartItems, setCartItems} = useContext(ShoppingContext)
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [users, setUsers] = useState([]);
-
-  console.log(cartItems)
 
   // Fetching users from API json-server
   const fetchUsers = async () => {
@@ -30,15 +28,17 @@ function Login({ products, onAdd, onRemove, onReset }) {
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    // console.log(userName, email)
+    e.preventDefault();   
 
-    if (userName && email) {
-      console.log(users);
+    if (userName && email) {      
       users.map((user) => {
         if (user.userName === userName && user.email === email) {
-          // console.log(cartItems);
-          return navigate("/payment", { state: cartItems, onAdd, onRemove });
+          // console.log(userName);
+          setIsLoggedIn(true)
+          setUserName(userName)
+          setUserRegister(userName)
+          console.log(userName)
+          return navigate("/payment", { state: cartItems, onAdd, onRemove }, {userName: {userName}});
         } else {
           swal("This user doesn´t exist");
         }
@@ -50,9 +50,6 @@ function Login({ products, onAdd, onRemove, onReset }) {
 
   return (
     <>
-      {/* <Link to="/">
-        <p>Back Home</p>
-      </Link> */}
       <section className="container my-5">
         <div className="text-center">
           <h1>Login</h1>

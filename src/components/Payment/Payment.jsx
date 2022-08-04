@@ -9,8 +9,9 @@ import { CartContext } from "../../App";
 
 import "./payment.css";
 
-function Payment({ onAdd, onRemove, onReset }) {
+function Payment({ onAdd, onRemove, onReset, userRegister }) {
   const {cartItems, setCartItems} = useContext(CartContext)
+  
   const totalBuyed = cartItems.reduce((total, item) => {
     const { price, qty } = item;
     const itemTotal = price * qty;
@@ -20,9 +21,10 @@ function Payment({ onAdd, onRemove, onReset }) {
 
   const shippingFee = 6.78
 
+  console.log({userRegister})
   return (
     <>
-      <h1 className="text-center mt-3">Payment</h1>
+      <h1 className="text-center mt-3">Welcome, {userRegister}</h1>
       <h1 className="text-center mb-5 lead">Please, proceed to pay</h1>
 
       {cartItems.map((item) => {

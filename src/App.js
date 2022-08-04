@@ -1,7 +1,7 @@
 import React from "react";
 
 import { useEffect, useState, useReducer, createContext } from "react";
-import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { useFetch } from "./components/hooks/useFetch";
 
@@ -16,8 +16,6 @@ import Payment from "./components/Payment/Payment.jsx";
 import ProductDetail from "./components/ProductDetail/ProductDetail.jsx";
 import Error from "./components/Error/Error.jsx";
 
-
-
 // import products from "./data/products";
 import swal from "sweetalert";
 import Swal from "sweetalert";
@@ -30,6 +28,13 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
   const [products, setProducts] = useState([]);
 
+  const [showAlert, setShowAlert] = useState(false);
+  // const [alertMessage, setAlertMessage] = useState({})
+
+  // const [showAlert, setShowAlert] = useState({})
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const[userRegister, setUserRegister] = useState("")
+
   // --------------------------------
   // --------------------------------
   // --------------------------------
@@ -39,6 +44,7 @@ function App() {
   const reducer = (state, action) => {
     if (action.type === "ADD_WISHLIST") {
       const wishList = [...state, action.payload];
+
       const uniqueWishList = [...new Set(wishList)];
       return uniqueWishList;
     }
@@ -48,17 +54,20 @@ function App() {
     }
   };
 
-  const initialState = [];
+  const initialState = JSON.parse(localStorage.getItem("state")) || [];
 
-  const init = () => {
-    return JSON.parse(localStorage.getItem("state")) || initialState;
-  };
+  // const init = () => {
+  //   return JSON.parse(localStorage.getItem("state")) || initialState;
+  // };
 
-  const [state, dispatch] = useReducer(reducer, initialState, init);
+  // const [state, dispatch] = useReducer(reducer, initialState, init);
+
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   // Save wishLIst on localStorage
   useEffect(() => {
     localStorage.setItem("state", JSON.stringify(state));
+    console.log(state);
   }, [state]);
 
   const addWishList = (wishItem) => {
@@ -100,11 +109,18 @@ function App() {
 
   const onAdd = (product) => {
     // swal("item added");
-    Swal({
-      icon: "success",
-      title: "Product added",
-      text: "Enjoy you purchase!",
-    });
+    // Swal({
+    //   icon: "success",
+    //   title: "Product added",
+    //   text: "Enjoy you purchase!",
+    // });
+    
+    setShowAlert(true);
+
+    setTimeout(() => {
+      setShowAlert(false);
+      // setAlertMessage({message: "Product added!", alertType: "success"})
+    }, 1000);
 
     const exist = cartItems.find((item) => item.id === product.id);
     if (exist) {
@@ -137,6 +153,12 @@ function App() {
       title: "Product delete",
       text: "See you soon!",
     });
+
+    // setShowAlert(true)
+    // setTimeout(()=>{
+    //   setShowAlert(false)
+    // },1000)
+
     setCartItems(cartItems.filter((item) => item.id !== product.id));
   };
 
@@ -144,15 +166,16 @@ function App() {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
 
-  
+  // console.log(userRegister)
 
   return (
     <>
-      <CartContext.Provider value={{cartItems, setCartItems}}>
-        <Navbar cartItems={cartItems} state={state} />
+      <CartContext.Provider value={{ cartItems, setCartItems }}>
+        
         {/* Route */}
         <BrowserRouter>
           {/* <Navbar/>    */}
+          <Navbar cartItems={cartItems} state={state} showAlert={showAlert} isLoggedIn={isLoggedIn} />
           <Routes>
             {/* Dashboard Route starts here */}
             <Route
@@ -163,12 +186,13 @@ function App() {
                     products={products}
                     onAdd={onAdd}
                     addWishList={addWishList}
+                    showAlert={showAlert}
                   />
                   <Shopping
-                    
                     onAdd={onAdd}
                     onRemove={onRemove}
                     onReset={onReset}
+                    showAlert={showAlert}
                   />
                 </main>
               }
@@ -176,7 +200,7 @@ function App() {
             <Route path="/products/:productId" element={<ProductDetail />} />
 
             {/* Dashboard Route ends here */}
-            {console.log(state)}
+            {/* {console.log(state)} */}
             <Route
               path="/wishlist"
               element={
@@ -196,6 +220,9 @@ function App() {
                   onAdd={onAdd}
                   onRemove={onRemove}
                   onReset={onReset}
+                  isLoggedIn={isLoggedIn}
+                  setIsLoggedIn={setIsLoggedIn}
+                  setUserRegister={setUserRegister}
                 />
               }
             />
@@ -204,11 +231,7 @@ function App() {
             <Route
               path="/payment"
               element={
-                <Payment
-                  onAdd={onAdd}
-                  onRemove={onRemove}
-                  onReset={onReset}
-                />
+                <Payment onAdd={onAdd} onRemove={onRemove} onReset={onReset} userRegister={userRegister} />
               }
             />
             <Route path="*" element={<Error />} />

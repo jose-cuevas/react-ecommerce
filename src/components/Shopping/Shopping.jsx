@@ -8,7 +8,7 @@ import { CartContext } from "../../App.js";
 import './shopping.css'
 
 
-function Shopping( { onAdd, onRemove, onReset}) {
+function Shopping( { onAdd, onRemove, onReset, showAlert}) {
 
 const {cartItems, setcartItems} = useContext(CartContext) 
   let totalCheckout = null;
@@ -23,9 +23,8 @@ const {cartItems, setcartItems} = useContext(CartContext)
   // console.log(cartItems)
   return (
     <>
-    {/* <Link to="/wishlist">Whislist</Link> */}
       <section className="shoppingCart-container">
-      <h3 className="mb-4">Shopping Cart</h3>
+      {/* {showAlert && <div className="alert alert-success" role="alert">alkalkdklasd</div>} */}
       {cartItems.length === 0 && <p>The cart is empty</p>}
       {cartItems.map((item) => (
         <ShoppingCard key={item.id} item={item} onAdd={onAdd} onRemove={onRemove} onReset={onReset}/>  

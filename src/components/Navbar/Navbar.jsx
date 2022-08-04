@@ -1,61 +1,72 @@
 import { Link } from "react-router-dom";
-import {BsFillCartFill, BsFillHeartFill} from "react-icons/bs"
+import { BsFillCartFill, BsFillHeartFill } from "react-icons/bs";
 
-function Navbar({ cartItems, state}) {
-  
-  const totalCartItems = cartItems.reduce((acc, item)=>{
-    const {qty} = item
-    return acc += qty
-  },0)
+import "./navbar.css";
+
+function Navbar({ cartItems, state, showAlert, isLoggedIn }) {
+  const totalCartItems = cartItems.reduce((acc, item) => {
+    const { qty } = item;
+    return (acc += qty);
+  }, 0);
 
   // TODO: Get wishlist by props or from localStorage (useEffect)
-  const totalWishItems = state.reduce((acc, item)=>{
-    const {qty} = item
-    return acc += qty
-  },0)
-  
+  // const totalWishItems = state.reduce((acc, item)=>{
+  //   const {qty} = item
+  //   return acc += qty
+  // },0)
 
   return (
     <>
-      <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid my-3 ">
-          {/* <h2>Base nav</h2> */}
-          <ul class="nav">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/">
-                Home
-              </a>
-            </li>
-            {/* <li class="nav-item">
-              <a class="nav-link" href="#">
-                About us
-              </a>
-            </li> */}
-            <li class="nav-item">
-              <a class="nav-link" href="/login">
-                Login
-                {/* <Link to="/login">
-                  <p>Login</p>
-                </Link> */}
-              </a>
-            </li>
-            
-            <li class="nav-item">
-              <a class="nav-link" href="/wishlist">
-                <BsFillHeartFill style={{ fontSize: "1.3rem" }}/>
-                <span> </span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                {/* <span>Cart </span> */}
-                <BsFillCartFill style={{ fontSize: "1.5rem" }}/>
-                <span>{totalCartItems}</span>
-              </a>
-            </li>
-          </ul>
-        </div>
+      <nav className="navbar navbar-expand-lg">
+        <ul className="nav">
+        <li className="nav-item">
+          <Link to="/" className="nav-link active" aria-current="page">Home</Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/login" className="nav-link">Login</Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/wishlist" className="nav-link"><BsFillHeartFill style={{ fontSize: "1.3rem" }} />
+                <span> </span></Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/login" className="nav-link"><BsFillCartFill style={{ fontSize: "1.5rem" }} />
+                <span>{totalCartItems}</span></Link>
+        </li>
+
+{/* 
+        {isLoggedIn ? (
+              <>
+                <li className="nav-item">
+                  <a className="nav-link" href="/login">
+                    logOut
+                  </a>
+                </li>
+              </>
+            ) : (
+              <>
+                <li className="nav-item">
+                  <a className="nav-link" href="/login">
+                    LogIn
+                  </a>
+                </li>
+              </>
+            )} */}
+
+
+      </ul>
       </nav>
+
+      <section className="container alerts__container w-50">
+        {showAlert && (
+          <div
+            className="alert alert-success alerts__container--message"
+            role="alert"
+          >
+            Product added!
+          </div>
+        )}
+      </section>
     </>
   );
 }
