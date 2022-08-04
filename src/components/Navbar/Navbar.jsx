@@ -9,32 +9,36 @@ function Navbar({ cartItems, state, showAlert, isLoggedIn }) {
     return (acc += qty);
   }, 0);
 
-  // TODO: Get wishlist by props or from localStorage (useEffect)
-  // const totalWishItems = state.reduce((acc, item)=>{
-  //   const {qty} = item
-  //   return acc += qty
-  // },0)
+  const totalWishItems = state.length;
 
   return (
     <>
       <nav className="navbar navbar-expand-lg">
         <ul className="nav">
-        <li className="nav-item">
-          <Link to="/" className="nav-link active" aria-current="page">Home</Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/login" className="nav-link">Login</Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/wishlist" className="nav-link"><BsFillHeartFill style={{ fontSize: "1.3rem" }} />
-                <span> </span></Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/login" className="nav-link"><BsFillCartFill style={{ fontSize: "1.5rem" }} />
-                <span>{totalCartItems}</span></Link>
-        </li>
+          <li className="nav-item">
+            <Link to="/" className="nav-link active" aria-current="page">
+              Home
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/login" className="nav-link">
+              Login
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/wishlist" className="nav-link">
+              <BsFillHeartFill style={{ fontSize: "1.3rem" }} />
+              <span> {totalWishItems}</span>
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/login" className="nav-link">
+              <BsFillCartFill style={{ fontSize: "1.5rem" }} />
+              <span>{totalCartItems}</span>
+            </Link>
+          </li>
 
-{/* 
+          {/* 
         {isLoggedIn ? (
               <>
                 <li className="nav-item">
@@ -52,9 +56,7 @@ function Navbar({ cartItems, state, showAlert, isLoggedIn }) {
                 </li>
               </>
             )} */}
-
-
-      </ul>
+        </ul>
       </nav>
 
       <section className="container alerts__container w-50">

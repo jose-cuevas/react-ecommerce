@@ -33,7 +33,7 @@ function App() {
 
   // const [showAlert, setShowAlert] = useState({})
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const[userRegister, setUserRegister] = useState("")
+  const [userRegister, setUserRegister] = useState("");
 
   // --------------------------------
   // --------------------------------
@@ -43,10 +43,16 @@ function App() {
 
   const reducer = (state, action) => {
     if (action.type === "ADD_WISHLIST") {
-      const wishList = [...state, action.payload];
+      const exist = state.find((wishItem) => wishItem.id === action.payload.id);      
 
-      const uniqueWishList = [...new Set(wishList)];
-      return uniqueWishList;
+      if (!exist) {        
+        const wishList = [...state, action.payload];
+        const uniqueWishList = [...new Set(wishList)];
+        console.log(uniqueWishList);
+        return uniqueWishList;
+      } else if (exist) {
+        return state
+      }      
     }
 
     if (action.type === "REMOVE_WISHLIST") {
@@ -54,20 +60,14 @@ function App() {
     }
   };
 
-  const initialState = JSON.parse(localStorage.getItem("state")) || [];
-
-  // const init = () => {
-  //   return JSON.parse(localStorage.getItem("state")) || initialState;
-  // };
-
-  // const [state, dispatch] = useReducer(reducer, initialState, init);
+  const initialState = JSON.parse(localStorage.getItem("state")) || []; 
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
   // Save wishLIst on localStorage
   useEffect(() => {
     localStorage.setItem("state", JSON.stringify(state));
-    console.log(state);
+    // console.log(state);
   }, [state]);
 
   const addWishList = (wishItem) => {
@@ -114,7 +114,7 @@ function App() {
     //   title: "Product added",
     //   text: "Enjoy you purchase!",
     // });
-    
+
     setShowAlert(true);
 
     setTimeout(() => {
@@ -171,11 +171,15 @@ function App() {
   return (
     <>
       <CartContext.Provider value={{ cartItems, setCartItems }}>
-        
         {/* Route */}
         <BrowserRouter>
           {/* <Navbar/>    */}
-          <Navbar cartItems={cartItems} state={state} showAlert={showAlert} isLoggedIn={isLoggedIn} />
+          <Navbar
+            cartItems={cartItems}
+            state={state}
+            showAlert={showAlert}
+            isLoggedIn={isLoggedIn}
+          />
           <Routes>
             {/* Dashboard Route starts here */}
             <Route
@@ -231,7 +235,12 @@ function App() {
             <Route
               path="/payment"
               element={
-                <Payment onAdd={onAdd} onRemove={onRemove} onReset={onReset} userRegister={userRegister} />
+                <Payment
+                  onAdd={onAdd}
+                  onRemove={onRemove}
+                  onReset={onReset}
+                  userRegister={userRegister}
+                />
               }
             />
             <Route path="*" element={<Error />} />
