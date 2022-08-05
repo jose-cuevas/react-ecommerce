@@ -8,12 +8,17 @@ import { useContext } from "react";
 import swal from "sweetalert";
 import "./login.css";
 
+import { AuthContext } from "../../context/Auth/AuthContext";
+
 function Login({ products, onAdd, onRemove, onReset, isLoggedIn, setIsLoggedIn,setUserRegister }) {
 
   const {cartItems, setCartItems} = useContext(ShoppingContext)
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [users, setUsers] = useState([]);
+
+const {authState, LogInAuth} = useContext(AuthContext)
+  
 
   // Fetching users from API json-server
   const fetchUsers = async () => {
@@ -33,11 +38,8 @@ function Login({ products, onAdd, onRemove, onReset, isLoggedIn, setIsLoggedIn,s
     if (userName && email) {      
       users.map((user) => {
         if (user.userName === userName && user.email === email) {
-          // console.log(userName);
-          setIsLoggedIn(true)
-          setUserName(userName)
-          setUserRegister(userName)
-          console.log(userName)
+          setUserName(userName)            
+          LogInAuth(userName)
           return navigate("/payment", { state: cartItems, onAdd, onRemove }, {userName: {userName}});
         } else {
           swal("This user doesn´t exist");

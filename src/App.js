@@ -1,5 +1,3 @@
-import React from "react";
-
 import { useEffect, useState, useReducer, createContext } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -16,20 +14,24 @@ import Payment from "./components/Payment/Payment.jsx";
 import ProductDetail from "./components/ProductDetail/ProductDetail.jsx";
 import Error from "./components/Error/Error.jsx";
 
+// import { AuthContext } from "./context/Auth/AuthContext";
+import AuthProvider from "./context/Auth/AuthContext";
+// import AuthProvider from "./AuthProvider";
+
 // import products from "./data/products";
 import swal from "sweetalert";
 import Swal from "sweetalert";
 import "./App.css";
 
 // * Creating context for cartItems array
-export const CartContext = React.createContext({});
+export const CartContext = createContext({});
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
   const [products, setProducts] = useState([]);
 
   const [showAlert, setShowAlert] = useState(false);
-  // const [alertMessage, setAlertMessage] = useState({})
+  // const [alertMessage, setAlertMessage] = useState({onAddAlert:"", onRemoveAlert:"", })
 
   // const [showAlert, setShowAlert] = useState({})
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -43,16 +45,16 @@ function App() {
 
   const reducer = (state, action) => {
     if (action.type === "ADD_WISHLIST") {
-      const exist = state.find((wishItem) => wishItem.id === action.payload.id);      
+      const exist = state.find((wishItem) => wishItem.id === action.payload.id);
 
-      if (!exist) {        
+      if (!exist) {
         const wishList = [...state, action.payload];
         const uniqueWishList = [...new Set(wishList)];
         console.log(uniqueWishList);
         return uniqueWishList;
       } else if (exist) {
-        return state
-      }      
+        return state;
+      }
     }
 
     if (action.type === "REMOVE_WISHLIST") {
@@ -60,7 +62,7 @@ function App() {
     }
   };
 
-  const initialState = JSON.parse(localStorage.getItem("state")) || []; 
+  const initialState = JSON.parse(localStorage.getItem("state")) || [];
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -108,15 +110,7 @@ function App() {
   }, []);
 
   const onAdd = (product) => {
-    // swal("item added");
-    // Swal({
-    //   icon: "success",
-    //   title: "Product added",
-    //   text: "Enjoy you purchase!",
-    // });
-
     setShowAlert(true);
-
     setTimeout(() => {
       setShowAlert(false);
       // setAlertMessage({message: "Product added!", alertType: "success"})
@@ -166,87 +160,87 @@ function App() {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
 
-  // console.log(userRegister)
-
   return (
     <>
-      <CartContext.Provider value={{ cartItems, setCartItems }}>
-        {/* Route */}
-        <BrowserRouter>
-          {/* <Navbar/>    */}
-          <Navbar
-            cartItems={cartItems}
-            state={state}
-            showAlert={showAlert}
-            isLoggedIn={isLoggedIn}
-          />
-          <Routes>
-            {/* Dashboard Route starts here */}
-            <Route
-              path="/"
-              element={
-                <main className="app-container__flex">
-                  <Products
-                    products={products}
+      <AuthProvider>
+        <CartContext.Provider value={{ cartItems, setCartItems }}>
+          {/* Route */}
+          <BrowserRouter>
+            {/* <Navbar/>    */}
+            <Navbar
+              cartItems={cartItems}
+              state={state}
+              showAlert={showAlert}
+              isLoggedIn={isLoggedIn}
+            />
+            <Routes>
+              {/* Dashboard Route starts here */}
+              <Route
+                path="/"
+                element={
+                  <main className="app-container__flex">
+                    <Products
+                      products={products}
+                      onAdd={onAdd}
+                      addWishList={addWishList}
+                      showAlert={showAlert}
+                    />
+                    <Shopping
+                      onAdd={onAdd}
+                      onRemove={onRemove}
+                      onReset={onReset}
+                      showAlert={showAlert}
+                    />
+                  </main>
+                }
+              />
+              <Route path="/products/:productId" element={<ProductDetail />} />
+
+              {/* Dashboard Route ends here */}
+              {/* {console.log(state)} */}
+              <Route
+                path="/wishlist"
+                element={
+                  <WishList
+                    state={state}
                     onAdd={onAdd}
-                    addWishList={addWishList}
-                    showAlert={showAlert}
+                    removeWishList={removeWishList}
                   />
-                  <Shopping
+                }
+              />
+              <Route
+                path="/login"
+                element={
+                  <Login
+                    products={products}
+                    cartItems={cartItems}
                     onAdd={onAdd}
                     onRemove={onRemove}
                     onReset={onReset}
-                    showAlert={showAlert}
+                    isLoggedIn={isLoggedIn}
+                    setIsLoggedIn={setIsLoggedIn}
+                    setUserRegister={setUserRegister}
                   />
-                </main>
-              }
-            />
-            <Route path="/products/:productId" element={<ProductDetail />} />
-
-            {/* Dashboard Route ends here */}
-            {/* {console.log(state)} */}
-            <Route
-              path="/wishlist"
-              element={
-                <WishList
-                  state={state}
-                  onAdd={onAdd}
-                  removeWishList={removeWishList}
-                />
-              }
-            />
-            <Route
-              path="/login"
-              element={
-                <Login
-                  products={products}
-                  cartItems={cartItems}
-                  onAdd={onAdd}
-                  onRemove={onRemove}
-                  onReset={onReset}
-                  isLoggedIn={isLoggedIn}
-                  setIsLoggedIn={setIsLoggedIn}
-                  setUserRegister={setUserRegister}
-                />
-              }
-            />
-            <Route path="/sigin" element={<SigIn />} />
-            <Route path="/forgot" element={<ForgotPassword />} />
-            <Route
-              path="/payment"
-              element={
-                <Payment
-                  onAdd={onAdd}
-                  onRemove={onRemove}
-                  onReset={onReset}
-                  userRegister={userRegister}
-                />
-              }
-            />
-            <Route path="*" element={<Error />} />
-          </Routes>
-        </BrowserRouter>
-      </CartContext.Provider>
+                }
+              />
+              <Route path="/sigin" element={<SigIn />} />
+              <Route path="/forgot" element={<ForgotPassword />} />
+              <Route
+                path="/payment"
+                element={
+                  <Payment
+                    onAdd={onAdd}
+                    onRemove={onRemove}
+                    onReset={onReset}
+                    userRegister={userRegister}
+                  />
+                }
+              />
+              <Route path="*" element={<Error />} />
+            </Routes>
+          </BrowserRouter>
+        </CartContext.Provider>
+      </AuthProvider>
     </>
   );
 }

@@ -7,11 +7,15 @@ import { BsPlusLg, BsDashLg, BsTrash } from "react-icons/bs";
 import { useContext } from "react";
 import { CartContext } from "../../App";
 
+import { AuthContext } from "../../context/Auth/AuthContext";
+
 import "./payment.css";
 
 function Payment({ onAdd, onRemove, onReset, userRegister }) {
-  const {cartItems, setCartItems} = useContext(CartContext)
-  
+  const { cartItems, setCartItems } = useContext(CartContext);
+  const { authState } = useContext(AuthContext);
+  const { userName, isLogged } = authState;
+
   const totalBuyed = cartItems.reduce((total, item) => {
     const { price, qty } = item;
     const itemTotal = price * qty;
@@ -19,14 +23,17 @@ function Payment({ onAdd, onRemove, onReset, userRegister }) {
     return total;
   }, 0);
 
-  const shippingFee = 6.78
+  const shippingFee = 6.78;
 
-  console.log({userRegister})
   return (
     <>
-      <h1 className="text-center mt-3">Welcome, {userRegister}</h1>
+      <h1 className="text-center mt-3">Welcome {userName} !</h1>
       <h1 className="text-center mb-5 lead">Please, proceed to pay</h1>
 
+      {cartItems.length === 0 && (
+        <h2 className="lead text-center">Your shopping cart is empty</h2>
+      )}
+      
       {cartItems.map((item) => {
         const { id, title, price, img, qty } = item;
 
@@ -59,27 +66,24 @@ function Payment({ onAdd, onRemove, onReset, userRegister }) {
         );
       })}
 
-      {/* <div className="container d-flex justify-content-end my-5">
-        <button className="btn btn-secondary me-4 ">Continue Shopping</button>
-        <button className="btn btn-secondary">Clear Shopping Cart</button>
-      </div> */}
-
+{cartItems.length > 0 && (
+  <>
       <div className="container border">
         <div className="row p-5">
           <p>Subtotal: {totalBuyed} €</p>
-          <p className="border-bottom border-1 pb-4 mb-4">Shipping Fee: {shippingFee} €</p>
+          <p className="border-bottom border-1 pb-4 mb-4">
+            Shipping Fee: {shippingFee} €
+          </p>
           <p>Order Total: {totalBuyed + shippingFee} €</p>
         </div>
       </div>
 
-<div className="container d-flex justify-content-center">
-<button className="btn btn-primary px-5 my-5">Payment</button>
-
-</div>
-      
-
-      
-    </>
+      <div className="container d-flex justify-content-center">
+        <button className="btn btn-primary px-5 my-5">Payment</button>
+      </div>
+      </>
+    )}
+  </>
   );
 }
 
