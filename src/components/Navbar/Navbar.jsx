@@ -34,7 +34,6 @@ function Navbar({ cartItems, state, showAlert, isLoggedIn }) {
               Home
             </Link>
           </li>
-
           <li className="nav-item">
             <Link to="/wishlist" className="nav-link">
               <BsFillHeartFill style={{ fontSize: "1.3rem" }} />
@@ -51,10 +50,7 @@ function Navbar({ cartItems, state, showAlert, isLoggedIn }) {
           {isLogged ? (
             <li className="nav-item">              
               <div className="nav-link">
-              <span className=""> Welcome {userName}&nbsp;&nbsp;</span>
-              {/* <button className="" >
-                LogOut
-              </button>   */}
+              <span className=""> Welcome {userName}&nbsp;&nbsp;</span>              
               <Link to="/login" onClick={logOut}>
                 <BsBoxArrowRight style={{ fontSize: "1.5rem" }}></BsBoxArrowRight>
               </Link>
