@@ -9,18 +9,22 @@ import WishList from "../WishList/WishList.jsx";
 
 function Products({ products, onAdd, addWishList, showAlert }) {
   return (
-    <>   
-      <section className="products-container">     
-        <section className="products-container__grid">
-          {products.map((product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              onAdd={onAdd}
-              addWishList={addWishList}
-            />
-          ))}
-        </section>
+    <>
+      <section className="col-md-8">
+        <div className="row">
+          
+            {products.map((product) => (
+              <div className="col-md-4 col-lg-3">
+              <ProductCard
+                key={product.id}
+                product={product}
+                onAdd={onAdd}
+                addWishList={addWishList}
+              />
+              </div>
+            ))}
+          
+        </div>
       </section>
     </>
   );

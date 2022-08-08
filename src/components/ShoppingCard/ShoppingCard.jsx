@@ -1,52 +1,48 @@
 import { BsPlusLg, BsDashLg, BsTrash } from "react-icons/bs";
-import toast, { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
 
 import "./ShoppingCard.css";
 
 function ShoppingCard({ item, onAdd, onRemove, onReset }) {
-
   return (
     <>
-    
-      <div className="container border mb-3 p-3">
-        <div className="row">
-          <div className="col-5 pt-2">
-            <img src={item.img} alt="" className="item__img" />
-          </div>
-          <div className="col-7">
-            <div >{item.title}</div>
-            <div>Price: {item.price * item.qty} € </div>
-            <div>Amount: {item.qty}</div>
-            <div className="button-container d-flex">
+      <article className="card border mb-3">
+        <div className="d-flex justify-content-between align-items-center p-2">
+            <img src={item.img} alt="" className="item__img rounded-circle me-2" />
+          
+          <div className="">
+            <div className="lh-sm">{item.title}</div>
+            <div className="lh-sm">Price: {item.price * item.qty} € </div>
+            <div className="lh-sm">Amount: {item.qty}</div>
+            </div>
+            <div className="mt-0">
               <button
                 type="button"
-                className="btn btn-sm button-container__add
+                className="btn btn-sm button-container__add p-0
         "
                 onClick={() => onAdd(item)}
               >
-                <BsPlusLg style={{ fontColor: "white" }} />
+                <BsPlusLg style={{ fontSize: "0.8rem" }} />
               </button>
 
               <button
                 type="button"
-                className="btn btn-sm button-container__remove"
+                className="btn btn-sm button-container__remove p-0"
                 onClick={() => onRemove(item)}
               >
-                <BsDashLg />
+                <BsDashLg style={{ fontSize: "0.6rem" }}/>
               </button>
               <button
                 type="button"
                 className="btn btn-sm button-container__reset"
                 onClick={() => onReset(item)}
               >
-                <BsTrash style={{ fontSize: "1.5rem" }} />
+                <BsTrash style={{ fontSize: "1rem" }} />
               </button>
-              
             </div>
-          </div>
+          
         </div>
-      </div>
-         
+      </article>
     </>
   );
 }

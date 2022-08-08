@@ -9,6 +9,7 @@ function WishList({ state, onAdd, removeWishList, showAlert }) {
     <>
       {/* <Link to="/">Back to home</Link> */}
       {/* <h1>WishList</h1> */}
+      { whishList.length === 0 && <h2 className="text-center">Your wish list is empty</h2>}
       {whishList.map((wish) => {
         return (
           <div key={wish.id} className="container my-5 ">

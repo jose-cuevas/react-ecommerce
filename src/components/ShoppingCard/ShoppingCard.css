@@ -5,7 +5,8 @@
 }
 
 .item__img{
-    max-width:55px
+    height:30px;
+    
 }
 
 .button-container__add,

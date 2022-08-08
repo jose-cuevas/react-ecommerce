@@ -1,7 +1,5 @@
 import { useEffect, useState, useReducer, createContext } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import toast, {Toaster} from "react-hot-toast"
-// import { ToastContainer, toast } from 'react-toastify';
 
 import { useFetch } from "./components/hooks/useFetch";
 
@@ -17,12 +15,10 @@ import ProductDetail from "./components/ProductDetail/ProductDetail.jsx";
 import Error from "./components/Error/Error.jsx";
 import PrivateRoute from "./PrivateRoute";
 
-// import { AuthContext } from "./context/Auth/AuthContext";
 import AuthProvider from "./context/Auth/AuthContext";
 
-import swal from "sweetalert";
-import Swal from "sweetalert";
-import "./App.css";
+
+// import "./App.css";
 
 // * Creating context for cartItems array
 export const CartContext = createContext({});
@@ -159,8 +155,6 @@ function App() {
     setTimeout(() => {
       setShowAlert({alertDelete: false});      
     }, 1000); 
-    
-
     setCartItems(cartItems.filter((item) => item.id !== product.id));
   };
 
@@ -181,33 +175,31 @@ function App() {
               state={state}
               showAlert={showAlert}
               isLoggedIn={isLoggedIn}              
-            />
-            
+            />            
             <Routes>
               {/* Dashboard Route starts here */}
               <Route
                 path="/"
                 element={
-                  <main className="app-container__flex">
-                    <Products
+                  <main className="container">
+                  <div className="row">
+                    <Products 
                       products={products}
                       onAdd={onAdd}
                       addWishList={addWishList}
                       showAlert={showAlert}
                     />
-                    <Shopping
-                      onAdd={onAdd}
+                    <Shopping                       onAdd={onAdd}
                       onRemove={onRemove}
                       onReset={onReset}
                       showAlert={showAlert}
                     />
+                    </div>
                   </main>
                 }
               />
               <Route path="/products/:productId" element={<ProductDetail />} />
-
-              {/* Dashboard Route ends here */}
-              {/* {console.log(state)} */}
+              {/* Dashboard Route ends here */}              
               <Route
                 path="/wishlist"
                 element={
