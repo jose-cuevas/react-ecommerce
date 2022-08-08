@@ -20,8 +20,7 @@ function ProductCard({ product, onAdd, addWishList}) {
         >
           Add to basket
         </button>
-        <button type="button" className="btn btn-primary btn-sm" onClick={() => addWishList(product)}>Add to whishlist</button>
-        
+        <button type="button" className="btn btn-primary btn-sm" onClick={() => addWishList(product)}>Add to whishlist</button>   
         
       </article>
     </>

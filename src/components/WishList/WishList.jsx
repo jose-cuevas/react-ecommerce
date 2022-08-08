@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./wishlist.css";
 import { BsCart, BsTrash } from "react-icons/bs";
 
-function WishList({ state, onAdd, removeWishList }) {
+function WishList({ state, onAdd, removeWishList, showAlert }) {
   const whishList = state;
   return (
     <>

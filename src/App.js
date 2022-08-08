@@ -1,6 +1,7 @@
 import { useEffect, useState, useReducer, createContext } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import toast, { Toaster } from 'react-hot-toast';
+import toast, {Toaster} from "react-hot-toast"
+// import { ToastContainer, toast } from 'react-toastify';
 
 import { useFetch } from "./components/hooks/useFetch";
 
@@ -18,10 +19,7 @@ import PrivateRoute from "./PrivateRoute";
 
 // import { AuthContext } from "./context/Auth/AuthContext";
 import AuthProvider from "./context/Auth/AuthContext";
-import { AuthContext } from "./context/Auth/AuthContext";
-// import AuthProvider from "./AuthProvider";
 
-// import products from "./data/products";
 import swal from "sweetalert";
 import Swal from "sweetalert";
 import "./App.css";
@@ -33,8 +31,8 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
   const [products, setProducts] = useState([]);
 
-  const [showAlert, setShowAlert] = useState(false);
-  // const [alertMessage, setAlertMessage] = useState({onAddAlert:"", onRemoveAlert:"", })
+  // const [showAlert, setShowAlert] = useState(false);  
+  const [showAlert, setShowAlert] = useState({alertAdd: false, alertDelete: false});  
 
   // const [showAlert, setShowAlert] = useState({})
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -76,10 +74,18 @@ function App() {
   }, [state]);
 
   const addWishList = (wishItem) => {
+    setShowAlert({alertAdd: true});
+    setTimeout(() => {
+      setShowAlert({alertAdd: false});      
+    }, 1000);
     dispatch({ type: "ADD_WISHLIST", payload: wishItem });
   };
 
   const removeWishList = (wishItem) => {
+    setShowAlert({alertDelete: true});
+    setTimeout(() => {
+      setShowAlert({alertDelete: false});      
+    }, 1000);
     dispatch({ type: "REMOVE_WISHLIST", payload: wishItem });
   };
 
@@ -113,10 +119,9 @@ function App() {
   }, []);
 
   const onAdd = (product) => {
-    setShowAlert(true);
+    setShowAlert({alertAdd: true});
     setTimeout(() => {
-      setShowAlert(false);
-      // setAlertMessage({message: "Product added!", alertType: "success"})
+      setShowAlert({alertAdd: false});      
     }, 1000);
 
     const exist = cartItems.find((item) => item.id === product.id);
@@ -131,7 +136,12 @@ function App() {
     }
   };
 
-  const onRemove = (product) => {        
+  const onRemove = (product) => {  
+    setShowAlert({alertDelete: true});
+    setTimeout(() => {
+      setShowAlert({alertDelete: false});      
+    }, 1000);     
+    
     const exist = cartItems.find((item) => item.id === product.id);
     if (exist.qty === 1) {
       setCartItems(cartItems.filter((item) => item.id !== product.id));
@@ -145,16 +155,11 @@ function App() {
   };
 
   const onReset = (product) => {
-    // Swal({
-    //   icon: "error",
-    //   title: "Product delete",
-    //   text: "See you soon!",
-    // });
-
-    // setShowAlert(true)
-    // setTimeout(()=>{
-    //   setShowAlert(false)
-    // },1000)
+    setShowAlert({alertDelete: true});
+    setTimeout(() => {
+      setShowAlert({alertDelete: false});      
+    }, 1000); 
+    
 
     setCartItems(cartItems.filter((item) => item.id !== product.id));
   };
@@ -168,9 +173,6 @@ function App() {
       <AuthProvider>
       {/* {console.log(authState)} */}
         <CartContext.Provider value={{ cartItems, setCartItems }}>
-        
-        
-        
           {/* Route */}
           <BrowserRouter>
             {/* <Navbar/>    */}
@@ -178,8 +180,9 @@ function App() {
               cartItems={cartItems}
               state={state}
               showAlert={showAlert}
-              isLoggedIn={isLoggedIn}
+              isLoggedIn={isLoggedIn}              
             />
+            
             <Routes>
               {/* Dashboard Route starts here */}
               <Route

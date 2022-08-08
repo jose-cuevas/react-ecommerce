@@ -1,9 +1,13 @@
 import { BsPlusLg, BsDashLg, BsTrash } from "react-icons/bs";
+import toast, { Toaster } from 'react-hot-toast';
 
 import "./ShoppingCard.css";
+
 function ShoppingCard({ item, onAdd, onRemove, onReset }) {
+
   return (
     <>
+    
       <div className="container border mb-3 p-3">
         <div className="row">
           <div className="col-5 pt-2">
@@ -37,10 +41,12 @@ function ShoppingCard({ item, onAdd, onRemove, onReset }) {
               >
                 <BsTrash style={{ fontSize: "1.5rem" }} />
               </button>
+              
             </div>
           </div>
         </div>
       </div>
+         
     </>
   );
 }
