@@ -41,7 +41,8 @@ function Navbar({ cartItems, state, showAlert, isLoggedIn }) {
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/login" className="nav-link">
+            {/* TODO: Create shopping page */}
+            <Link to="" className="nav-link">
               <BsFillCartFill style={{ fontSize: "1.5rem" }} />
               <span>{totalCartItems}</span>
             </Link>

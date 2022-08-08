@@ -31,7 +31,7 @@ const {cartItems, setcartItems} = useContext(CartContext)
       ))} 
       <div className="checkout-container">
         {cartItems.length > 0 && <h2 className="checkout-container__total-price">Total: {totalPrice()} €</h2>} 
-        {cartItems.length > 0 && <Link to="login"><div className="btn btn-primary  container-fluid">Checkout</div></Link>}     
+        {cartItems.length > 0 && <Link to="/payment"><div className="btn btn-primary  container-fluid">Checkout</div></Link>}     
       </div>  
       </section>
     </>

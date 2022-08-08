@@ -17,7 +17,7 @@ function Login({ products, onAdd, onRemove, onReset, isLoggedIn, setIsLoggedIn,s
   const [email, setEmail] = useState("");
   const [users, setUsers] = useState([]);
 
-const {authState, LogInAuth} = useContext(AuthContext)
+  const {authState, LogInAuth} = useContext(AuthContext)
   
 
   // Fetching users from API json-server

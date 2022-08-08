@@ -1,5 +1,6 @@
 import { useEffect, useState, useReducer, createContext } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import toast, { Toaster } from 'react-hot-toast';
 
 import { useFetch } from "./components/hooks/useFetch";
 
@@ -13,9 +14,11 @@ import ForgotPassword from "./components/forgotPassword/ForgotPassword.jsx";
 import Payment from "./components/Payment/Payment.jsx";
 import ProductDetail from "./components/ProductDetail/ProductDetail.jsx";
 import Error from "./components/Error/Error.jsx";
+import PrivateRoute from "./PrivateRoute";
 
 // import { AuthContext } from "./context/Auth/AuthContext";
 import AuthProvider from "./context/Auth/AuthContext";
+import { AuthContext } from "./context/Auth/AuthContext";
 // import AuthProvider from "./AuthProvider";
 
 // import products from "./data/products";
@@ -128,7 +131,7 @@ function App() {
     }
   };
 
-  const onRemove = (product) => {
+  const onRemove = (product) => {        
     const exist = cartItems.find((item) => item.id === product.id);
     if (exist.qty === 1) {
       setCartItems(cartItems.filter((item) => item.id !== product.id));
@@ -142,11 +145,11 @@ function App() {
   };
 
   const onReset = (product) => {
-    Swal({
-      icon: "error",
-      title: "Product delete",
-      text: "See you soon!",
-    });
+    // Swal({
+    //   icon: "error",
+    //   title: "Product delete",
+    //   text: "See you soon!",
+    // });
 
     // setShowAlert(true)
     // setTimeout(()=>{
@@ -163,7 +166,11 @@ function App() {
   return (
     <>
       <AuthProvider>
+      {/* {console.log(authState)} */}
         <CartContext.Provider value={{ cartItems, setCartItems }}>
+        
+        
+        
           {/* Route */}
           <BrowserRouter>
             {/* <Navbar/>    */}
@@ -227,13 +234,13 @@ function App() {
               <Route path="/forgot" element={<ForgotPassword />} />
               <Route
                 path="/payment"
-                element={
+                element={<PrivateRoute>
                   <Payment
                     onAdd={onAdd}
                     onRemove={onRemove}
                     onReset={onReset}
-                    userRegister={userRegister}
-                  />
+                    userRegister={userRegister}                    
+                  /></PrivateRoute>
                 }
               />
               <Route path="*" element={<Error />} />
