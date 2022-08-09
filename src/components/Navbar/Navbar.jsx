@@ -56,8 +56,7 @@ function Navbar({
               <span> {totalWishItems}</span>
             </Link>
           </li>
-          <li className="nav-item">
-            {/* TODO: Create shopping page */}
+          <li className="nav-item">            
             <Link to="" className="nav-link">
               <BsFillCartFill style={{ fontSize: "1.5rem" }} />
               <span>{totalCartItems}</span>
@@ -96,7 +95,6 @@ function Navbar({
             Product added!
           </div>
         )}
-
         {showAlert.alertDelete && (
           <div
             className="alert alert-danger alerts__container--message"

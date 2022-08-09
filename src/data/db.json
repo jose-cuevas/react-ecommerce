@@ -2,7 +2,7 @@
   "products":[
   {
     "id": 100,
-    "title": "Nike Runner 2000",
+    "title": "Nike Runner",
     "price": 88,
     "img": "../img/img_1.jpeg"
   },
@@ -17,7 +17,56 @@
     "title": "Nike Rev Lite",
     "price": 66,
     "img": "../img/img_3.jpeg"
+  },
+  {
+    "id": 103,
+    "title": "Nike Runner",
+    "price": 88,
+    "img": "../img/img_4.jpg"
+  },
+  {
+    "id": 104,
+    "title": "Nike Runner",
+    "price": 88,
+    "img": "../img/img_5.jpg"
+  },
+  {
+    "id": 105,
+    "title": "Nike Runner",
+    "price": 88,
+    "img": "../img/img_6.jpeg"
+  },
+  {
+    "id": 106,
+    "title": "Nike Runner",
+    "price": 88,
+    "img": "../img/img_7.jpeg"
+  },
+  {
+    "id": 107,
+    "title": "Nike Runner",
+    "price": 88,
+    "img": "../img/img_8.jpeg"
+  },
+  {
+    "id": 108,
+    "title": "Nike Runner",
+    "price": 88,
+    "img": "../img/img_9.jpeg"
+  },
+  {
+    "id": 109,
+    "title": "Nike Runner",
+    "price": 88,
+    "img": "../img/img_10.jpeg"
+  },
+  {
+    "id": 110,
+    "title": "Nike Runner",
+    "price": 88,
+    "img": "../img/img_11.jpeg"
   }
+
 ],
 "users":[
   {
