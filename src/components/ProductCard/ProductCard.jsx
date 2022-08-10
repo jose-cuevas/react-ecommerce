@@ -18,7 +18,7 @@ function ProductCard({ product, onAdd, addWishList }) {
         <img src={product.img} alt={product.img} className="img-thumbnail" />
         <div className="ps-3 mt-2">{product.title}</div>
         <div className="ps-3 mb-2">{product.price} €</div>
-        <section className="d-flex justify-content-center">
+        <section className="d-flex justify-content-center mb-2">
           <Link to={`/products/${product.id}`}>
             <button className="btn  btn-sm counter-button mb-1 ">
               <BsInfoCircleFill

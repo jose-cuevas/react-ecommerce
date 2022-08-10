@@ -1,15 +1,11 @@
 import { useEffect, useState, useReducer, createContext } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import { useFetch } from "./components/hooks/useFetch";
-
 import Navbar from "./components/Navbar/Navbar.jsx";
 import Products from "./components/Products/Products";
 import Shopping from "./components/Shopping/Shopping";
 import WishList from "./components/WishList/WishList.jsx";
 import Login from "./components/Login/Login.jsx";
-import SigIn from "./components/SigIn/SigIn.jsx";
-import ForgotPassword from "./components/forgotPassword/ForgotPassword.jsx";
 import Payment from "./components/Payment/Payment.jsx";
 import ProductDetail from "./components/ProductDetail/ProductDetail.jsx";
 import Error from "./components/Error/Error.jsx";
@@ -43,8 +39,7 @@ function App() {
 
       if (!exist) {
         const wishList = [...state, action.payload];
-        const uniqueWishList = [...new Set(wishList)];
-        console.log(uniqueWishList);
+        const uniqueWishList = [...new Set(wishList)];        
         return uniqueWishList;
       } else if (exist) {
         return state;
@@ -161,12 +156,9 @@ function App() {
 
   return (
     <>
-      <AuthProvider>
-      {/* {console.log(authState)} */}
+      <AuthProvider>      
         <CartContext.Provider value={{ cartItems, setCartItems }}>
-          {/* Route */}
           <BrowserRouter>
-            {/* <Navbar/>    */}
             <Navbar
               cartItems={cartItems}
               state={state}
@@ -222,8 +214,8 @@ function App() {
                   />
                 }
               />
-              <Route path="/sigin" element={<SigIn />} />
-              <Route path="/forgot" element={<ForgotPassword />} />
+              {/* <Route path="/sigin" element={<SigIn />} />
+              <Route path="/forgot" element={<ForgotPassword />} /> */}
               <Route
                 path="/payment"
                 element={<PrivateRoute>

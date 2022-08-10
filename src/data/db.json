@@ -20,50 +20,50 @@
     },
     {
       "id": 103,
-      "title": "asasasasas",
-      "price": 88,
+      "title": "Nike tennis",
+      "price": 82,
       "img": "../img/img_4.jpeg"
     },
     {
       "id": 104,
-      "title": "asasasasas",
-      "price": 88,
+      "title": "Nike cream",
+      "price": 37,
       "img": "../img/img_5.jpg"
     },
     {
       "id": 105,
-      "title": "bbbbbbbbbbbbbbbbbb",
-      "price": 88,
+      "title": "Nike devil",
+      "price": 110,
       "img": "../img/img_6.jpg"
     },
     {
       "id": 106,
-      "title": "ffffffffffffff",
-      "price": 88,
+      "title": "Nike classic",
+      "price": 64,
       "img": "../img/img_7.jpg"
     },
     {
       "id": 107,
-      "title": "Nike Runner",
-      "price": 88,
+      "title": "Nike pinky",
+      "price": 71,
       "img": "../img/img_8.jpg"
     },
     {
       "id": 108,
-      "title": "Nike Runner",
-      "price": 88,
+      "title": "Nike Jordan",
+      "price": 140,
       "img": "../img/img_9.jpg"
     },
     {
       "id": 109,
-      "title": "N100",
-      "price": 88,
+      "title": "Nike retro",
+      "price": 87,
       "img": "../img/img_10.jpg"
     },
     {
       "id": 110,
-      "title": "Nike Runner",
-      "price": 88,
+      "title": "Nike yoga",
+      "price": 45,
       "img": "../img/img_11.jpg"
     }
   ],

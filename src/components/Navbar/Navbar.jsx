@@ -44,7 +44,7 @@ function Navbar({
   return (
     <>
       <nav className="navbar navbar-expand-lg">
-      <div class="container">
+      <div className="container">
         <ul className="nav">
           <li className="nav-item">
             <Link to="/" className="nav-link active" aria-current="page">
@@ -66,7 +66,6 @@ function Navbar({
               <span>{totalCartItems}</span>
             </Link>
           </li>
-
           {isLogged ? (
             <li className="nav-item">
               <div className="nav-link">

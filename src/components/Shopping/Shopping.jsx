@@ -5,11 +5,7 @@ import {Link} from "react-router-dom"
 import { useContext } from "react";
 import { CartContext } from "../../App.js";
 
-// import './shopping.css'
-
-
 function Shopping( { onAdd, onRemove, onReset, showAlert}) {
-
 const {cartItems, setcartItems} = useContext(CartContext) 
   let totalCheckout = null;
   const totalPrice = () =>{

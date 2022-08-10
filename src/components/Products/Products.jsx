@@ -1,11 +1,5 @@
-import { useState, useEffect } from "react";
-import Navbar from "../Navbar/Navbar.jsx";
-
 import ProductCard from "../ProductCard/ProductCard.jsx";
-import { Link } from "react-router-dom";
 
-// import "./products.css";
-import WishList from "../WishList/WishList.jsx";
 
 function Products({ products, onAdd, addWishList, showAlert }) {
   return (
@@ -22,8 +16,7 @@ function Products({ products, onAdd, addWishList, showAlert }) {
                 addWishList={addWishList}
               />
               </div>
-            ))}
-          
+            ))}          
         </div>
       </section>
     </>

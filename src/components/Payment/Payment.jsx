@@ -32,11 +32,9 @@ function Payment({ onAdd, onRemove, onReset, userRegister }) {
 
       {cartItems.length === 0 && (
         <h2 className="lead text-center">Your shopping cart is empty</h2>
-      )}
-      
+      )}      
       {cartItems.map((item) => {
         const { id, title, price, img, qty } = item;
-
         return (
           <section key={id} className="container border mb-3 p-5">
             <div  className="row align-items-center">

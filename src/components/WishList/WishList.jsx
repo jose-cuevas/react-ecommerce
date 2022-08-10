@@ -1,14 +1,10 @@
-import { Link } from "react-router-dom";
-
 import "./wishlist.css";
 import { BsCart, BsTrash } from "react-icons/bs";
 
 function WishList({ state, onAdd, removeWishList, showAlert }) {
   const whishList = state;
   return (
-    <>
-      {/* <Link to="/">Back to home</Link> */}
-      {/* <h1>WishList</h1> */}
+    <>      
       { whishList.length === 0 && <h2 className="text-center">Your wish list is empty</h2>}
       {whishList.map((wish) => {
         return (

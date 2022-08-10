@@ -1,5 +1,4 @@
 import { BsPlusLg, BsDashLg, BsTrash } from "react-icons/bs";
-import toast, { Toaster } from "react-hot-toast";
 
 import "./ShoppingCard.css";
 

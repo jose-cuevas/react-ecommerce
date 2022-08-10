@@ -3,9 +3,7 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 
 import "./error.css";
 
-
 function Error() {
-
 const navigate = useNavigate()
 
 setTimeout(()=>{
@@ -14,11 +12,9 @@ setTimeout(()=>{
 
   return (
     <>
-    
-      {<Link to="/">Go Home Page</Link>}
-      <section className="">
-        <h1>Error 404</h1>
-        <p>Redirected to home page</p>
+      <section className="container text-center">      
+        <h1 className="mt-5">Error 404 - This page doesn´t exit</h1>
+        <p className="lead mt-5">You´ll be redirected to home page soon ...</p>
       </section>
     </>
   );

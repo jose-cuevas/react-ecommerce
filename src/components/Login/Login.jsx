@@ -92,18 +92,7 @@ function Login({ products, onAdd, onRemove, onReset, isLoggedIn, setIsLoggedIn,s
               <div className="text-center my-3">
                 <button type="submit" className="btn btn-primary mb-2">
                   Login
-                </button>
-                <div className="form-text">
-                  Are you a new user? Please,{" "}
-                  <Link to="/sigin">register here</Link>
-                </div>
-
-                <div className="form-text">
-                  <p>
-                    Forgot your password?, Please,{" "}
-                    <Link to="/forgot">click here</Link>
-                  </p>
-                </div>
+                </button>                
               </div>
             </form>
           </div>
