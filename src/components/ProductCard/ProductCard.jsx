@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import products from "../../data/products";
+import { BsPlusLg, BsDashLg, BsTrash } from "react-icons/bs";
+
 
 import "./productCard.css";
 import "../Products/products.css";
