@@ -15,7 +15,6 @@ export default function AuthProvider({ children }) {
       userName: name,
     };
 
-
     localStorage.setItem("user", JSON.stringify(user));
     dispatch({ type: "USER_LOGIN", payload: user });
   };
@@ -29,10 +28,6 @@ export default function AuthProvider({ children }) {
 
   const [authState, dispatch] = useReducer(authReducer, initialState, init);
 
-  console.log('authState: ',authState)
-
-//   localStorage.setItem("user", JSON.stringify(user));
-  //   console.log(localStorage.setItem("authState", JSON.stringify(authState)));
 
   return (
     <>

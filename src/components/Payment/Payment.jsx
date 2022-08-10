@@ -38,8 +38,8 @@ function Payment({ onAdd, onRemove, onReset, userRegister }) {
         const { id, title, price, img, qty } = item;
 
         return (
-          <section className="container border mb-3 p-5">
-            <div key={id} className="row align-items-center">
+          <section key={id} className="container border mb-3 p-5">
+            <div  className="row align-items-center">
               <div className="col-md-2">
                 <img src={img} alt={title} className="payment-container__img" />
               </div>
@@ -70,11 +70,11 @@ function Payment({ onAdd, onRemove, onReset, userRegister }) {
   <>
       <div className="container border">
         <div className="row p-5">
-          <p>Subtotal: {totalBuyed} €</p>
-          <p className="border-bottom border-1 pb-4 mb-4">
+          <h6>Subtotal: {totalBuyed} €</h6>
+          <h6 className="border-bottom border-1 pb-4 mb-4">
             Shipping Fee: {shippingFee} €
-          </p>
-          <p>Order Total: {totalBuyed + shippingFee} €</p>
+          </h6>
+          <h2 className="text-end">Total: {totalBuyed + shippingFee} €</h2>
         </div>
       </div>
 

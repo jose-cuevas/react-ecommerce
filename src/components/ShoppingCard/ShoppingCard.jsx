@@ -6,9 +6,9 @@ import "./ShoppingCard.css";
 function ShoppingCard({ item, onAdd, onRemove, onReset }) {
   return (
     <>
-      <article className="card border mb-3">
+      <article className="card border mb-3 m-2">
         <div className="d-flex justify-content-between align-items-center p-2">
-            <img src={item.img} alt="" className="item__img rounded-circle me-2" />
+            <img src={item.img} alt="" className="item__img rounded-circle mx-2" />
           
           <div className="">
             <div className="lh-sm">{item.title}</div>

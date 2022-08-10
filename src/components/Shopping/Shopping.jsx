@@ -21,7 +21,7 @@ const {cartItems, setcartItems} = useContext(CartContext)
   }
   return (
     <>
-      <section className="col-md-4">
+      <section className="col-md-4 p-0">
       {cartItems.length === 0 && <p>The cart is empty</p>}
       {cartItems.map((item) => (
         <ShoppingCard key={item.id} item={item} onAdd={onAdd} onRemove={onRemove} onReset={onReset}/>  

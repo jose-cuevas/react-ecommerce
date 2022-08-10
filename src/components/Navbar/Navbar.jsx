@@ -51,6 +51,9 @@ function Navbar({
             </Link>
           </li>
           <li className="nav-item">
+            <Link to="/contact" className="nav-link">Contact</Link>
+          </li>
+          <li className="nav-item">
             <Link to="/wishlist" className="nav-link">
               <BsFillHeartFill style={{ fontSize: "1.3rem" }} />
               <span> {totalWishItems}</span>
@@ -82,7 +85,7 @@ function Navbar({
                 ></BsFillPersonFill>
               </Link>
             </li>
-          )}
+          )}          
         </ul>
       </nav>
 

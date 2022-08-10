@@ -8,7 +8,7 @@ function ProductCard({ product, onAdd, addWishList }) {
   return (
     <>   
       
-        <article className="card">
+        <article className="card m-2">
           <img src={product.img} alt={product.img} className="img-thumbnail" />
           <div>{product.title}</div>
           <div>{product.price} €</div>

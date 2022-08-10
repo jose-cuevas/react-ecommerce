@@ -14,6 +14,7 @@ import Payment from "./components/Payment/Payment.jsx";
 import ProductDetail from "./components/ProductDetail/ProductDetail.jsx";
 import Error from "./components/Error/Error.jsx";
 import PrivateRoute from "./PrivateRoute";
+import ContactPage from "./components/contactPage/ContactPage";
 
 import AuthProvider from "./context/Auth/AuthContext";
 
@@ -25,12 +26,8 @@ export const CartContext = createContext({});
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
-  const [products, setProducts] = useState([]);
-
-  // const [showAlert, setShowAlert] = useState(false);  
+  const [products, setProducts] = useState([]);    
   const [showAlert, setShowAlert] = useState({alertAdd: false, alertDelete: false});  
-
-  // const [showAlert, setShowAlert] = useState({})
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userRegister, setUserRegister] = useState("");
 
@@ -238,6 +235,7 @@ function App() {
                   /></PrivateRoute>
                 }
               />
+              <Route path="/contact" element={<ContactPage/>}></Route>
               <Route path="*" element={<Error />} />
             </Routes>
           </BrowserRouter>

@@ -1,78 +1,77 @@
 {
-  "products":[
-  {
-    "id": 100,
-    "title": "Nike Runner",
-    "price": 88,
-    "img": "../img/img_1.jpeg"
-  },
-  {
-    "id": 101,
-    "title": "Puma 80's",
-    "price": 109,
-    "img": "../img/img_2.jpeg"
-  },
-  {
-    "id": 102,
-    "title": "Nike Rev Lite",
-    "price": 66,
-    "img": "../img/img_3.jpeg"
-  },
-  {
-    "id": 103,
-    "title": "Nike Runner",
-    "price": 88,
-    "img": "../img/img_4.jpg"
-  },
-  {
-    "id": 104,
-    "title": "Nike Runner",
-    "price": 88,
-    "img": "../img/img_5.jpg"
-  },
-  {
-    "id": 105,
-    "title": "Nike Runner",
-    "price": 88,
-    "img": "../img/img_6.jpeg"
-  },
-  {
-    "id": 106,
-    "title": "Nike Runner",
-    "price": 88,
-    "img": "../img/img_7.jpeg"
-  },
-  {
-    "id": 107,
-    "title": "Nike Runner",
-    "price": 88,
-    "img": "../img/img_8.jpeg"
-  },
-  {
-    "id": 108,
-    "title": "Nike Runner",
-    "price": 88,
-    "img": "../img/img_9.jpeg"
-  },
-  {
-    "id": 109,
-    "title": "Nike Runner",
-    "price": 88,
-    "img": "../img/img_10.jpeg"
-  },
-  {
-    "id": 110,
-    "title": "Nike Runner",
-    "price": 88,
-    "img": "../img/img_11.jpeg"
-  }
-
-],
-"users":[
-  {
-    "userName": "jose",
-    "email": "jose@gmail.com",
-    "password": 123456
-  }
-]
+  "products": [
+    {
+      "id": 100,
+      "title": "Nike Runner",
+      "price": 88,
+      "img": "../img/img_1.jpeg"
+    },
+    {
+      "id": 101,
+      "title": "Puma 80's",
+      "price": 109,
+      "img": "../img/img_2.jpeg"
+    },
+    {
+      "id": 102,
+      "title": "Nike Rev Lite",
+      "price": 66,
+      "img": "../img/img_3.jpeg"
+    },
+    {
+      "id": 103,
+      "title": "asasasasas",
+      "price": 88,
+      "img": "../img/img_4.jpeg"
+    },
+    {
+      "id": 104,
+      "title": "asasasasas",
+      "price": 88,
+      "img": "../img/img_5.jpg"
+    },
+    {
+      "id": 105,
+      "title": "bbbbbbbbbbbbbbbbbb",
+      "price": 88,
+      "img": "../img/img_6.jpg"
+    },
+    {
+      "id": 106,
+      "title": "ffffffffffffff",
+      "price": 88,
+      "img": "../img/img_7.jpg"
+    },
+    {
+      "id": 107,
+      "title": "Nike Runner",
+      "price": 88,
+      "img": "../img/img_8.jpg"
+    },
+    {
+      "id": 108,
+      "title": "Nike Runner",
+      "price": 88,
+      "img": "../img/img_9.jpg"
+    },
+    {
+      "id": 109,
+      "title": "N100",
+      "price": 88,
+      "img": "../img/img_10.jpg"
+    },
+    {
+      "id": 110,
+      "title": "Nike Runner",
+      "price": 88,
+      "img": "../img/img_11.jpg"
+    }
+  ],
+  "users": [
+    {
+      "userName": "jose",
+      "email": "jose@gmail.com",
+      "password": 123456
+    }
+  ]
 }

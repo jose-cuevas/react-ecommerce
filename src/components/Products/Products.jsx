@@ -14,7 +14,7 @@ function Products({ products, onAdd, addWishList, showAlert }) {
         <div className="row">
           
             {products.map((product) => (
-              <div className="col-md-4 col-lg-3">
+              <div className="col-md-4 col-lg-3 p-0">
               <ProductCard
                 key={product.id}
                 product={product}
