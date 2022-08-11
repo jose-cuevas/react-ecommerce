@@ -10,14 +10,14 @@ import "./login.css";
 
 import { AuthContext } from "../../context/Auth/AuthContext";
 
-function Login({ products, onAdd, onRemove, onReset, isLoggedIn, setIsLoggedIn,setUserRegister }) {
+function Login({ onAdd, onRemove }) {
 
-  const {cartItems, setCartItems} = useContext(ShoppingContext)
+  const { cartItems } = useContext(ShoppingContext)
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [users, setUsers] = useState([]);
 
-  const {authState, LogInAuth} = useContext(AuthContext)
+  const { LogInAuth } = useContext(AuthContext)
   
 
   // Fetching users from API json-server

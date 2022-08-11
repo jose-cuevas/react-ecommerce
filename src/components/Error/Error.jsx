@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 
-import "./error.css";
 
 function Error() {
 const navigate = useNavigate()

@@ -1,7 +1,7 @@
 import "./wishlist.css";
 import { BsCart, BsTrash } from "react-icons/bs";
 
-function WishList({ state, onAdd, removeWishList, showAlert }) {
+function WishList({ state, onAdd, removeWishList }) {
   const whishList = state;
   return (
     <>      

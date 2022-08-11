@@ -14,10 +14,7 @@ import ContactPage from "./components/contactPage/ContactPage";
 
 import AuthProvider from "./context/Auth/AuthContext";
 
-
-// import "./App.css";
-
-// * Creating context for cartItems array
+// Context for cartItems array
 export const CartContext = createContext({});
 
 function App() {
@@ -29,9 +26,7 @@ function App() {
 
   // --------------------------------
   // --------------------------------
-  // --------------------------------
-  // --------------------------------
-  // * useReducer() whishList
+  // useReducer() whishList
 
   const reducer = (state, action) => {
     if (action.type === "ADD_WISHLIST") {
@@ -57,8 +52,7 @@ function App() {
 
   // Save wishLIst on localStorage
   useEffect(() => {
-    localStorage.setItem("state", JSON.stringify(state));
-    // console.log(state);
+    localStorage.setItem("state", JSON.stringify(state));    
   }, [state]);
 
   const addWishList = (wishItem) => {
@@ -80,17 +74,13 @@ function App() {
   // * useReducer() whishList ends here
   // --------------------------------
   // --------------------------------
-  // --------------------------------
-  // --------------------------------
 
   // Fectching products from API
   const url = "http://localhost:7000/products";
 
   const getProducts = async () => {
-    const response = await fetch(url);
-    // console.log(response);
-    const products = await response.json();
-    // console.log(products);
+    const response = await fetch(url);    
+    const products = await response.json();    
     setProducts(products);
   };
 
@@ -98,7 +88,7 @@ function App() {
     getProducts();
   }, []);
 
-  // * Getting cart items from local Storage
+  // Getting cart items from local Storage
   useEffect(() => {
     const cartItems = JSON.parse(localStorage.getItem("cartItems"));
     if (cartItems) {
@@ -213,9 +203,7 @@ function App() {
                     setUserRegister={setUserRegister}
                   />
                 }
-              />
-              {/* <Route path="/sigin" element={<SigIn />} />
-              <Route path="/forgot" element={<ForgotPassword />} /> */}
+              />              
               <Route
                 path="/payment"
                 element={<PrivateRoute>

@@ -15,16 +15,13 @@ import "./navbar.css";
 function Navbar({
   cartItems,
   state,
-  showAlert,
-  isLoggedIn,
-  setAlertMessage,
-  alertMessage,
+  showAlert
 }) {
   const { authState, LogOutAuth } = useContext(AuthContext);
   const { userName, isLogged } = authState;
   const navigate = useNavigate();
 
-  const alerMessage = {
+  const alertMessage = {
     onAdd: "Item added!",
     onDelete: "Item deleted",
   };
@@ -96,7 +93,7 @@ function Navbar({
             className="alert alert-success alerts__container--message"
             role="alert"
           >
-            Product added!
+            { alertMessage.onAdd }
           </div>
         )}
         {showAlert.alertDelete && (
@@ -104,7 +101,7 @@ function Navbar({
             className="alert alert-danger alerts__container--message"
             role="alert"
           >
-            Product deleted!
+            { alertMessage.onDelete }
           </div>
         )}
       </section>

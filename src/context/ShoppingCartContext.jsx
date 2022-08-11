@@ -14,14 +14,11 @@ const getCartItems = ()=>{
 export const ShoppingContext = React.createContext({});
 
 export default function ShoppingCartContext({ children }) {
-  
-//   const [text, setText] = useState("Hello!");
-const cartItems = getCartItems()
-  
 
-  return (
-    // <div>ShoppingCartContext</div>
-    <ShoppingContext.Provider value={{ cartItems}}>
+const cartItems = getCartItems()  
+
+  return (    
+    <ShoppingContext.Provider value={{ cartItems }}>
       {children}
     </ShoppingContext.Provider>
   );

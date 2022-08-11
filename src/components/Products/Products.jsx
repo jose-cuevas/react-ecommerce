@@ -1,7 +1,7 @@
 import ProductCard from "../ProductCard/ProductCard.jsx";
 
 
-function Products({ products, onAdd, addWishList, showAlert }) {
+function Products({ products, onAdd, addWishList }) {
   return (
     <>
       <section className="col-md-8">

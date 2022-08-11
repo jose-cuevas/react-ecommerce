@@ -1,20 +1,15 @@
-import { Link } from "react-router-dom";
-import { useEffect } from "react";
-import ShoppingCard from "../ShoppingCard/ShoppingCard";
-import { useLocation } from "react-router-dom";
-import { BsPlusLg, BsDashLg, BsTrash } from "react-icons/bs";
 
+import { BsPlusLg, BsDashLg, BsTrash } from "react-icons/bs";
 import { useContext } from "react";
 import { CartContext } from "../../App";
-
 import { AuthContext } from "../../context/Auth/AuthContext";
 
 import "./payment.css";
 
-function Payment({ onAdd, onRemove, onReset, userRegister }) {
-  const { cartItems, setCartItems } = useContext(CartContext);
+function Payment({ onAdd, onRemove, onReset }) {
+  const { cartItems } = useContext(CartContext);
   const { authState } = useContext(AuthContext);
-  const { userName, isLogged } = authState;
+  const { userName } = authState;
 
   const totalBuyed = cartItems.reduce((total, item) => {
     const { price, qty } = item;
@@ -34,7 +29,7 @@ function Payment({ onAdd, onRemove, onReset, userRegister }) {
         <h2 className="lead text-center">Your shopping cart is empty</h2>
       )}      
       {cartItems.map((item) => {
-        const { id, title, price, img, qty } = item;
+        const { id, title, img } = item;
         return (
           <section key={id} className="container border mb-3 p-5">
             <div  className="row align-items-center">

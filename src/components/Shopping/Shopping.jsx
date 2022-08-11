@@ -5,8 +5,8 @@ import {Link} from "react-router-dom"
 import { useContext } from "react";
 import { CartContext } from "../../App.js";
 
-function Shopping( { onAdd, onRemove, onReset, showAlert}) {
-const {cartItems, setcartItems} = useContext(CartContext) 
+function Shopping( { onAdd, onRemove, onReset }) {
+const { cartItems } = useContext(CartContext) 
   let totalCheckout = null;
   const totalPrice = () =>{
     cartItems.map(item=>{
