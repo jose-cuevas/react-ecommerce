@@ -26,6 +26,7 @@ function App() {
   const [showAlert, setShowAlert] = useState({alertAdd: false, alertDelete: false});  
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userRegister, setUserRegister] = useState("");
+  const [searchTerm, setSearchTerm] = useState({})
 
   // --------------------------------
   // --------------------------------
@@ -57,8 +58,7 @@ function App() {
 
   // Save wishLIst on localStorage
   useEffect(() => {
-    localStorage.setItem("state", JSON.stringify(state));
-    // console.log(state);
+    localStorage.setItem("state", JSON.stringify(state));    
   }, [state]);
 
   const addWishList = (wishItem) => {
@@ -96,7 +96,7 @@ function App() {
 
   useEffect(() => {
     getProducts();
-  }, []);
+  }, [searchTerm]);
 
   // * Getting cart items from local Storage
   useEffect(() => {
@@ -154,6 +154,8 @@ function App() {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
 
+  console.log(searchTerm)
+
   return (
     <>
       <AuthProvider>      
@@ -163,7 +165,8 @@ function App() {
               cartItems={cartItems}
               state={state}
               showAlert={showAlert}
-              isLoggedIn={isLoggedIn}              
+              isLoggedIn={isLoggedIn}  
+              setSearchTerm={setSearchTerm}            
             />            
             <Routes>
               {/* Dashboard Route starts here */}
@@ -177,6 +180,7 @@ function App() {
                       onAdd={onAdd}
                       addWishList={addWishList}
                       showAlert={showAlert}
+                      searchTerm={searchTerm}                      
                     />
                     <Shopping                       onAdd={onAdd}
                       onRemove={onRemove}

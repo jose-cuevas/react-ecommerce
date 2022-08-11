@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
 import { useContext } from "react";
 import { AuthContext } from "../../context/Auth/AuthContext";
+
+import SearchForm from "../SearchForm/SearchForm";
 
 import {
   BsFillCartFill,
@@ -15,10 +16,7 @@ import "./navbar.css";
 function Navbar({
   cartItems,
   state,
-  showAlert,
-  isLoggedIn,
-  setAlertMessage,
-  alertMessage,
+  showAlert
 }) {
   const { authState, LogOutAuth } = useContext(AuthContext);
   const { userName, isLogged } = authState;
@@ -87,6 +85,9 @@ function Navbar({
             </li>
           )}          
         </ul>
+        
+          
+
         </div>
       </nav>
 
